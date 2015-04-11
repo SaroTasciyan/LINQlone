@@ -6,9 +6,9 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("LINQlone")]
-[assembly: AssemblyDescription("Reimplementation of LINQ for .NET Framework v2.0")]
+[assembly: AssemblyDescription("LINQlone is a re-implementation of LINQ to Objects for Microsoft .NET Framework 2.0 providing all the standard query operators of Microsoft .NET Framework 3.5. With C# 2.0+ LINQlone also activates extension methods and lambda expressions.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Underdog")]
+[assembly: AssemblyCompany("Saro Taşciyan, Bedir Yılmaz")]
 [assembly: AssemblyProduct("LINQlone")]
 [assembly: AssemblyCopyright("Copyright © 2014")]
 [assembly: AssemblyTrademark("")]
