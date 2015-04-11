@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LINQlone", "LINQlone\LINQlone.csproj", "{336F12DB-7B85-4AE7-9588-23B969D8748D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LINQlone.Test", "LINQlone.Test\LINQlone.Test.csproj", "{64A057BF-A4BA-47F9-AFD5-A3B7CFEF1718}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+		Test|Any CPU = Test|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{336F12DB-7B85-4AE7-9588-23B969D8748D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{336F12DB-7B85-4AE7-9588-23B969D8748D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{336F12DB-7B85-4AE7-9588-23B969D8748D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{336F12DB-7B85-4AE7-9588-23B969D8748D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{336F12DB-7B85-4AE7-9588-23B969D8748D}.Test|Any CPU.ActiveCfg = Release|Any CPU
+		{336F12DB-7B85-4AE7-9588-23B969D8748D}.Test|Any CPU.Build.0 = Release|Any CPU
+		{64A057BF-A4BA-47F9-AFD5-A3B7CFEF1718}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64A057BF-A4BA-47F9-AFD5-A3B7CFEF1718}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64A057BF-A4BA-47F9-AFD5-A3B7CFEF1718}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64A057BF-A4BA-47F9-AFD5-A3B7CFEF1718}.Release|Any CPU.Build.0 = Release|Any CPU
+		{64A057BF-A4BA-47F9-AFD5-A3B7CFEF1718}.Test|Any CPU.ActiveCfg = Test|Any CPU
+		{64A057BF-A4BA-47F9-AFD5-A3B7CFEF1718}.Test|Any CPU.Build.0 = Test|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

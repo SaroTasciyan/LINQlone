@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{336F12DB-7B85-4AE7-9588-23B969D8748D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>LINQlone</RootNamespace>
+    <AssemblyName>LINQlone</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\LINQlone.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\LINQlone.XML</DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Internal\Definitions\Exceptions.cs" />
+    <Compile Include="Internal\Definitions\Parameters.cs" />
+    <Compile Include="Internal\Infrastructure\Buffer\Buffer.cs" />
+    <Compile Include="Internal\Infrastructure\EmptyEnumerable\EmptyEnumerable.cs" />
+    <Compile Include="Internal\Infrastructure\Grouping\Grouping.cs" />
+    <Compile Include="Internal\Infrastructure\NullableKeyDictionary\NullableKeyDictionary.cs" />
+    <Compile Include="Internal\Infrastructure\OrderedEnumerable\CompositeKey.cs" />
+    <Compile Include="Internal\Infrastructure\OrderedEnumerable\DescendingComparer.cs" />
+    <Compile Include="Internal\Infrastructure\OrderedEnumerable\OrderedEnumerable.cs" />
+    <Compile Include="Internal\Infrastructure\OrderedEnumerable\QuickSorter\KeyIndex.cs" />
+    <Compile Include="Internal\Infrastructure\OrderedEnumerable\QuickSorter\QuickSorter.cs" />
+    <Compile Include="Internal\Infrastructure\OrderedEnumerable\QuickSorter\StableQuickSorter.cs" />
+    <Compile Include="Internal\Infrastructure\UniqueCollection\UniqueCollection.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="System\CompilerServices\ExtensionAttribute.cs" />
+    <Compile Include="System\Delegates\Delegates.cs" />
+    <Compile Include="System\Linq\DataStructures\Lookup.cs" />
+    <Compile Include="System\Linq\DataStructures\Interface\IGrouping.cs" />
+    <Compile Include="System\Linq\DataStructures\Interface\ILookup.cs" />
+    <Compile Include="System\Linq\DataStructures\Interface\IOrderedEnumerable.cs" />
+    <Compile Include="System\Linq\DeferredExecution.cs" />
+    <Compile Include="System\Linq\ImmediateExecution.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

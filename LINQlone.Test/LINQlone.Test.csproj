@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{64A057BF-A4BA-47F9-AFD5-A3B7CFEF1718}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>LINQlone.Test</RootNamespace>
+    <AssemblyName>LINQlone.Test</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Test|AnyCPU'">
+    <OutputPath>bin\Test\</OutputPath>
+    <DefineConstants>TRACE;TEST</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="nunit.framework">
+      <HintPath>..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Attributes\ExplicitAttribute.cs" />
+    <Compile Include="Helpers\AssertionExtensions.cs" />
+    <Compile Include="DataObjects\Comparers\Base\CallCountableEqualityComparer.cs" />
+    <Compile Include="DataObjects\Comparers\ThrowingStringEqualityComparer.cs" />
+    <Compile Include="DataObjects\Builders\Data.cs" />
+    <Compile Include="DataObjects\Builders\LateThrowingData.cs" />
+    <Compile Include="DataObjects\Builders\ListData.cs" />
+    <Compile Include="DataObjects\Builders\ThrowingData.cs" />
+    <Compile Include="DataObjects\Complex\Country.cs" />
+    <Compile Include="Helpers\EnumerableExtensions.cs" />
+    <Compile Include="Helpers\StringHelper.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tests\AggregateTests.cs" />
+    <Compile Include="Tests\AllTests.cs" />
+    <Compile Include="Tests\AnyTests.cs" />
+    <Compile Include="Tests\AsEnumerableTests.cs" />
+    <Compile Include="Tests\AverageTests.cs" />
+    <Compile Include="Tests\Base\BaseTest.cs" />
+    <Compile Include="Tests\CastTests.cs" />
+    <Compile Include="Tests\ConcatTests.cs" />
+    <Compile Include="Tests\ContainsTests.cs" />
+    <Compile Include="Tests\CountTests.cs" />
+    <Compile Include="Tests\DefaultIfEmptyTests.cs" />
+    <Compile Include="Tests\DistinctTests.cs" />
+    <Compile Include="Tests\EmptyTests.cs" />
+    <Compile Include="Tests\ExceptTests.cs" />
+    <Compile Include="Tests\GroupByTests.cs" />
+    <Compile Include="Tests\GroupingTests.cs" />
+    <Compile Include="Tests\GroupJoinTests.cs" />
+    <Compile Include="Tests\IntersectTests.cs" />
+    <Compile Include="Tests\JoinTests.cs" />
+    <Compile Include="Tests\LastOrDefaultTests.cs" />
+    <Compile Include="Tests\LastTests.cs" />
+    <Compile Include="Tests\LongCountTests.cs" />
+    <Compile Include="Tests\LookupTests.cs" />
+    <Compile Include="Tests\MaxTests.cs" />
+    <Compile Include="Tests\MinTests.cs" />
+    <Compile Include="Tests\OrderByDescendingTests.cs" />
+    <Compile Include="Tests\OrderByTests.cs" />
+    <Compile Include="Tests\RangeTests.cs" />
+    <Compile Include="Tests\RepeatTests.cs" />
+    <Compile Include="Tests\ReverseTests.cs" />
+    <Compile Include="Tests\SelectManyTests.cs" />
+    <Compile Include="Tests\SequenceEqualTests.cs" />
+    <Compile Include="Tests\SkipWhileTests.cs" />
+    <Compile Include="Tests\SumTests.cs" />
+    <Compile Include="Tests\TakeWhileTests.cs" />
+    <Compile Include="Tests\ElementAtOrDefaultTests.cs" />
+    <Compile Include="Tests\ElementAtTests.cs" />
+    <Compile Include="Tests\EnumerableTests.cs" />
+    <Compile Include="Tests\FirstOrDefaultTests.cs" />
+    <Compile Include="Tests\FirstTests.cs" />
+    <Compile Include="Tests\OfTypeTests.cs" />
+    <Compile Include="Tests\SelectTests.cs" />
+    <Compile Include="Tests\SingleOrDefaultTests.cs" />
+    <Compile Include="Tests\SingleTests.cs" />
+    <Compile Include="Tests\SkipTests.cs" />
+    <Compile Include="Tests\TakeTests.cs" />
+    <Compile Include="Tests\ThenByDescendingTests.cs" />
+    <Compile Include="Tests\ThenByTests.cs" />
+    <Compile Include="Tests\ToArrayTests.cs" />
+    <Compile Include="Tests\ToDictionaryTests.cs" />
+    <Compile Include="Tests\ToListTest.cs" />
+    <Compile Include="Tests\ToLookupTests.cs" />
+    <Compile Include="Tests\UnionTests.cs" />
+    <Compile Include="Tests\WhereTests.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LINQlone\LINQlone.csproj">
+      <Project>{336f12db-7b85-4ae7-9588-23b969d8748d}</Project>
+      <Name>LINQlone</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
