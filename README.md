@@ -16,27 +16,27 @@ using System.Runtime.CompilerServices; //ExtensionAttribute providing extension 
 
 **C# 2.0**
 ```c#
-IEnumerable<string> customerNames = Enumerable.Select(customers, delegate(Customer x) { return x.Name; });
+IEnumerable<string> names = Enumerable.Select(customers, delegate(Customer x) { return x.Name; });
 ```
 **C# 2.0+**
 ```c#
 //Fluent Syntax
-IEnumerable<string> customerNames = customers.Select(x => x.Name);
+IEnumerable<string> names = customers.Select(x => x.Name);
 
 //Query Syntax
-IEnumerable<string> customerNames = from customer in customers select customer.Name;
+IEnumerable<string> names = from customer in customers select customer.Name;
 ```
 **VB 9.0**
 ```vb
-Dim customerNames As IEnumerable(Of String) = Enumerable.Select(customers, Function(x) x.Name)
+Dim names As IEnumerable(Of String) = Enumerable.Select(customers, Function(x) x.Name)
 ```
 **VB 9.0+**
 ```vb
 'Fluent Syntax
-Dim customerNames As IEnumerable(Of String) = customers.Select(Function(x) x.Name)
+Dim names As IEnumerable(Of String) = customers.Select(Function(x) x.Name)
 
 'Query Syntax
-Dim customerNames As IEnumerable(Of String) = From customer As Customer In customers Select customer.Name
+Dim names As IEnumerable(Of String) = From customer As Customer In customers Select customer.Name
 ```
 
 ## **Samples** ##
