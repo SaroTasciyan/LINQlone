@@ -59,8 +59,3 @@ With some slight difference, it will function as *Microsoft LINQ* does. All summ
 ## **Limitations** ##
 
 Altho all summeries, exception types and properties are supported, *LINQlone* does not support localized exception messages. Exception messages are in *English* only
-
-## **Authors** ##
-
-* Saro Taşciyan (Zefnus)
-* Bedir Yılmaz (3yanlis1bos)
