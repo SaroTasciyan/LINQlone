@@ -25,8 +25,6 @@ using LINQlone.Test.DataObjects;
 
 namespace LINQlone.Test
 {
-    //TODO #L! Solution ismi, Proje ismi, Assembly tanımları ve Unit testlerin ismi değişecek!
-
     [SetUICulture("en-US")] // # Setting UI culture to get stable exception messages (English)
     public class BaseTest
     {
