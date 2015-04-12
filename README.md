@@ -2,7 +2,7 @@
 
 LINQlone is a re-implementation of *LINQ to Objects* for Microsoft .NET Framework 2.0 providing all the standard query operators of Microsoft .NET Framework 3.5. With *C# 2.0+* LINQlone also activates *extension methods* and *lambda expressions*. The aim of this open source project is not to replace or improve Microsoft LINQ, but is to provide the same functionality and behavior for projects targeting .NET Framework 2.0. 
 
-LINQlone is a single dll file containing standard LINQ namespace, method names and signatures. Thus, LINQlone can be easily removed from the project. The project can easily be upgraded to .NET Framework 3.5. Upgrade only requires LINQlone reference to be removed. *Without any code edits*, all the query operators will be binded to Microsoft LINQ.
+LINQlone is a single dll file containing standard LINQ namespace, method names and signatures. Thus, LINQlone can be easily removed from the project. The project can easily be upgraded to .NET Framework 3.5. Upgrade only requires LINQlone reference to be removed. *Without any code edits*, all the query operators will be bound to Microsoft LINQ.
 
 ## **Namespace** ##
 
@@ -47,7 +47,7 @@ LINQlone does not include samples. *LINQlone.Test* project can be an example of 
 
 ## **How to** ##
 
-### How to use query or fleunt syntax? ###
+### How to use query or fluent syntax? ###
 In order to be able to use query syntax, *C# 2.0+* or *VB 9.0+* is required. Using *Visual Studio 2008* or above, extension methods and standard delegates defined in *LINQlone* assembly will be enabled.
 
 ### How to replace *LINQlone* with *Microsoft LINQ* when upgraded to .NET 3.5? ###
@@ -58,4 +58,4 @@ With some slight difference, it will function as *Microsoft LINQ* does. All summ
 
 ## **Limitations** ##
 
-Altho all summeries, exception types and properties are supported, *LINQlone* does not support localized exception messages. Exception messages are in *English* only
+Although all summaries, exception types and properties are supported, *LINQlone* does not support localized exception messages. Exception messages are in *English* only
