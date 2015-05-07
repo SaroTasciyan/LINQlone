@@ -77,6 +77,12 @@ namespace LINQlone.Test
         }
 
         [Test]
+        public void SingleOrDefaultMoreThanOneElementListInvalidOperation()
+        {
+            Assert.Throws<InvalidOperationException>(() => ListData(1, 2).SingleOrDefault()).WithMessageMoreThanOneElement();
+        }
+
+        [Test]
         public void SingleOrDefaultSourceArgumentNull()
         {
             Assert.Throws<ArgumentNullException>(() => NullData.SingleOrDefault()).WithParameter("source");
