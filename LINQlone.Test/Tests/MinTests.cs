@@ -699,7 +699,13 @@ namespace LINQlone.Test
         [Test]
         public void MinGenericWithSelectorReferenceNonEmptySource()
         {
-            Assert.That(Data<string>(null, "b", "a", "d", "c", null).Min(x => x ?? String.Empty), Is.SameAs(String.Empty));
+            Assert.That(Data<string>("b", "a", "d", "c").Min(x => String.Format("{0}?", x)), Is.EqualTo("a?"));
+        }
+
+        [Test]
+        public void MinGenericWithSelectorReferenceNonEmptyWithNullSource()
+        {
+            Assert.That(Data<string>(null, "b", "a", "d", "c", null).Min(x => x), Is.EqualTo("a"));
         }
 
         [Test]

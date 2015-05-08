@@ -33,7 +33,7 @@ namespace LINQlone.Test
         [Test]
         public void ElementAtNonEmptySource()
         {
-            Assert.That(Data(1, 2, 3).ElementAt(0), Is.EqualTo(1));
+            Assert.That(Data(1, 2, 3).ElementAt(1), Is.EqualTo(2));
         }
 
         [Test]

@@ -675,7 +675,13 @@ namespace LINQlone.Test
         [Test]
         public void MaxGenericWithSelectorReferenceNonEmptySource()
         {
-            Assert.That(Data<string>(null, "b", "a", "d", "c", null).Max(x => String.Format("{0}?", x)), Is.EqualTo("d?"));
+            Assert.That(Data<string>("b", "a", "d", "c").Max(x => String.Format("{0}?", x)), Is.EqualTo("d?"));
+        }
+
+        [Test]
+        public void MaxGenericWithSelectorReferenceNonEmptyWithNullSource()
+        {
+            Assert.That(Data<string>(null, "b", "a", "d", "c", null).Max(x => x), Is.EqualTo("d"));
         }
 
         [Test]
