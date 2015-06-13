@@ -1576,25 +1576,7 @@ namespace System.Linq
         /// <exception cref="System.InvalidOperationException">source contains no elements.</exception>
         public static int Max<TSource>(this IEnumerable<TSource> source, Func<TSource, int> selector)
         {
-            if (source == null) { throw Exceptions.ArgumentNull(Parameter.Source); }
-            if (selector == null) { throw Exceptions.ArgumentNull(Parameter.Selector); }
-
-            using (IEnumerator<TSource> enumerator = source.GetEnumerator())
-            {
-                bool has = enumerator.MoveNext();
-
-                if (!has) { throw Exceptions.NoElements(); }
-
-                int max = selector(enumerator.Current);
-
-                while (enumerator.MoveNext())
-                {
-                    int value = selector(enumerator.Current);
-                    if (value > max) { max = value; }
-                }
-
-                return max;
-            }
+            return Max(source.Select(selector));
         }
 
         /// <summary>
@@ -1608,25 +1590,7 @@ namespace System.Linq
         /// <exception cref="System.InvalidOperationException">source contains no elements.</exception>
         public static long Max<TSource>(this IEnumerable<TSource> source, Func<TSource, long> selector)
         {
-            if (source == null) { throw Exceptions.ArgumentNull(Parameter.Source); }
-            if (selector == null) { throw Exceptions.ArgumentNull(Parameter.Selector); }
-
-            using (IEnumerator<TSource> enumerator = source.GetEnumerator())
-            {
-                bool has = enumerator.MoveNext();
-
-                if (!has) { throw Exceptions.NoElements(); }
-
-                long max = selector(enumerator.Current);
-
-                while (enumerator.MoveNext())
-                {
-                    long value = selector(enumerator.Current);
-                    if (value > max) { max = value; }
-                }
-
-                return max;
-            }
+            return Max(source.Select(selector));
         }
 
         /// <summary>
@@ -1640,26 +1604,7 @@ namespace System.Linq
         /// <exception cref="System.InvalidOperationException">source contains no elements.</exception>
         public static float Max<TSource>(this IEnumerable<TSource> source, Func<TSource, float> selector)
         {
-            if (source == null) { throw Exceptions.ArgumentNull(Parameter.Source); }
-            if (selector == null) { throw Exceptions.ArgumentNull(Parameter.Selector); }
-            
-            using (IEnumerator<TSource> enumerator = source.GetEnumerator())
-            {
-                bool has = enumerator.MoveNext();
-
-                if (!has) { throw Exceptions.NoElements(); }
-
-                float max = selector(enumerator.Current);
-
-                while (enumerator.MoveNext())
-                {
-                    float value = selector(enumerator.Current);
-                    if (float.IsNaN(value)) { continue; }
-                    if ((double)value > (double)max || float.IsNaN(max)) { max = value; }
-                }
-
-                return max;
-            }
+            return Max(source.Select(selector));
         }
 
         /// <summary>
@@ -1673,26 +1618,7 @@ namespace System.Linq
         /// <exception cref="System.InvalidOperationException">source contains no elements.</exception>
         public static double Max<TSource>(this IEnumerable<TSource> source, Func<TSource, double> selector)
         {
-            if (source == null) { throw Exceptions.ArgumentNull(Parameter.Source); }
-            if (selector == null) { throw Exceptions.ArgumentNull(Parameter.Selector); }
-
-            using (IEnumerator<TSource> enumerator = source.GetEnumerator())
-            {
-                bool has = enumerator.MoveNext();
-
-                if (!has) { throw Exceptions.NoElements(); }
-
-                double max = selector(enumerator.Current);
-
-                while (enumerator.MoveNext())
-                {
-                    double value = selector(enumerator.Current);
-                    if (double.IsNaN(value)) { continue; }
-                    if (value > max || double.IsNaN(max)) { max = value; }
-                }
-
-                return max;
-            }
+            return Max(source.Select(selector));
         }
 
         /// <summary>
@@ -1706,25 +1632,7 @@ namespace System.Linq
         /// <exception cref="System.InvalidOperationException">source contains no elements.</exception>
         public static decimal Max<TSource>(this IEnumerable<TSource> source, Func<TSource, decimal> selector)
         {
-            if (source == null) { throw Exceptions.ArgumentNull(Parameter.Source); }
-            if (selector == null) { throw Exceptions.ArgumentNull(Parameter.Selector); }
-
-            using (IEnumerator<TSource> enumerator = source.GetEnumerator())
-            {
-                bool has = enumerator.MoveNext();
-
-                if (!has) { throw Exceptions.NoElements(); }
-
-                decimal max = selector(enumerator.Current);
-
-                while (enumerator.MoveNext())
-                {
-                    decimal value = selector(enumerator.Current);
-                    if (value > max) { max = value; }
-                }
-
-                return max;
-            }
+            return Max(source.Select(selector));
         }
 
         /// <summary>
@@ -1737,33 +1645,7 @@ namespace System.Linq
         /// <exception cref="System.ArgumentNullException">source or selector is null.</exception>
         public static int? Max<TSource>(this IEnumerable<TSource> source, Func<TSource, int?> selector)
         {
-            if (source == null) { throw Exceptions.ArgumentNull(Parameter.Source); }
-            if (selector == null) { throw Exceptions.ArgumentNull(Parameter.Selector); }
-
-            int? maximum = new int?();
-            using (IEnumerator<TSource> enumerator = source.GetEnumerator())
-            {
-                while (enumerator.MoveNext())
-                {
-                    int? item = selector(enumerator.Current);
-                    if (item.HasValue)
-                    {
-                        maximum = item;
-                        break;
-                    }
-                }
-
-                if (maximum.HasValue)
-                {
-                    while (enumerator.MoveNext())
-                    {
-                        int? item = selector(enumerator.Current);
-                        if (item.HasValue && item.Value > maximum.Value) { maximum = item; }
-                    }
-                }
-            }
-
-            return maximum;
+            return Max(source.Select(selector));
         }
 
         /// <summary>
@@ -1776,33 +1658,7 @@ namespace System.Linq
         /// <exception cref="System.ArgumentNullException">source or selector is null.</exception>
         public static long? Max<TSource>(this IEnumerable<TSource> source, Func<TSource, long?> selector)
         {
-            if (source == null) { throw Exceptions.ArgumentNull(Parameter.Source); }
-            if (selector == null) { throw Exceptions.ArgumentNull(Parameter.Selector); }
-
-            long? maximum = new long?();
-            using (IEnumerator<TSource> enumerator = source.GetEnumerator())
-            {
-                while (enumerator.MoveNext())
-                {
-                    long? item = selector(enumerator.Current);
-                    if (item.HasValue)
-                    {
-                        maximum = item;
-                        break;
-                    }
-                }
-
-                if (maximum.HasValue)
-                {
-                    while (enumerator.MoveNext())
-                    {
-                        long? item = selector(enumerator.Current);
-                        if (item.HasValue && item.Value > maximum.Value) { maximum = item; }
-                    }
-                }
-            }
-
-            return maximum;
+            return Max(source.Select(selector));
         }
 
         /// <summary>
@@ -1815,36 +1671,7 @@ namespace System.Linq
         /// <exception cref="System.ArgumentNullException">source or selector is null.</exception>
         public static float? Max<TSource>(this IEnumerable<TSource> source, Func<TSource, float?> selector)
         {
-            if (source == null) { throw Exceptions.ArgumentNull(Parameter.Source); }
-            if (selector == null) { throw Exceptions.ArgumentNull(Parameter.Selector); }
-
-            float? maximum = new float?();
-            using (IEnumerator<TSource> enumerator = source.GetEnumerator())
-            {
-                while (enumerator.MoveNext())
-                {
-                    float? item = selector(enumerator.Current);
-                    if (item.HasValue)
-                    {
-                        maximum = item;
-                        break;
-                    }
-                }
-
-                if (maximum.HasValue)
-                {
-                    while (enumerator.MoveNext())
-                    {
-                        float? item = selector(enumerator.Current);
-                        if (item.HasValue && !float.IsNaN(item.Value))
-                        {
-                            if ((double)item.Value > (double)maximum.Value || float.IsNaN(maximum.Value)) { maximum = item; }
-                        }
-                    }
-                }
-            }
-
-            return maximum;
+            return Max(source.Select(selector));
         }
 
         /// <summary>
@@ -1857,36 +1684,7 @@ namespace System.Linq
         /// <exception cref="System.ArgumentNullException">source or selector is null.</exception>
         public static double? Max<TSource>(this IEnumerable<TSource> source, Func<TSource, double?> selector)
         {
-            if (source == null) { throw Exceptions.ArgumentNull(Parameter.Source); }
-            if (selector == null) { throw Exceptions.ArgumentNull(Parameter.Selector); }
-
-            double? maximum = new double?();
-            using (IEnumerator<TSource> enumerator = source.GetEnumerator())
-            {
-                while (enumerator.MoveNext())
-                {
-                    double? item = selector(enumerator.Current);
-                    if (item.HasValue)
-                    {
-                        maximum = item;
-                        break;
-                    }
-                }
-
-                if (maximum.HasValue)
-                {
-                    while (enumerator.MoveNext())
-                    {
-                        double? item = selector(enumerator.Current);
-                        if (item.HasValue && !double.IsNaN(item.Value))
-                        {
-                            if (item.Value > maximum.Value || double.IsNaN(maximum.Value)) { maximum = item; }
-                        }
-                    }
-                }
-            }
-
-            return maximum;
+            return Max(source.Select(selector));
         }
 
         /// <summary>
@@ -1899,33 +1697,7 @@ namespace System.Linq
         /// <exception cref="System.ArgumentNullException">source or selector is null.</exception>
         public static decimal? Max<TSource>(this IEnumerable<TSource> source, Func<TSource, decimal?> selector)
         {
-            if (source == null) { throw Exceptions.ArgumentNull(Parameter.Source); }
-            if (selector == null) { throw Exceptions.ArgumentNull(Parameter.Selector); }
-
-            decimal? maximum = new decimal?();
-            using (IEnumerator<TSource> enumerator = source.GetEnumerator())
-            {
-                while (enumerator.MoveNext())
-                {
-                    decimal? item = selector(enumerator.Current);
-                    if (item.HasValue)
-                    {
-                        maximum = item;
-                        break;
-                    }
-                }
-
-                if (maximum.HasValue)
-                {
-                    while (enumerator.MoveNext())
-                    {
-                        decimal? item = selector(enumerator.Current);
-                        if (item.HasValue && item.Value > maximum.Value) { maximum = item; }
-                    }
-                }
-            }
-
-            return maximum;
+            return Max(source.Select(selector));
         }
 
         /// <summary>
@@ -1939,42 +1711,7 @@ namespace System.Linq
         /// <exception cref="System.ArgumentNullException">source or selector is null.</exception>
         public static TResult Max<TSource, TResult>(this IEnumerable<TSource> source, Func<TSource, TResult> selector)
         {
-            if (source == null) { throw Exceptions.ArgumentNull(Parameter.Source); }
-            if (selector == null) { throw Exceptions.ArgumentNull(Parameter.Selector); }
-
-            Comparer<TResult> comparer = Comparer<TResult>.Default;
-            TResult max = default(TResult);
-
-            if (max == null)
-            {
-                foreach (TSource item in source)
-                {
-                    TResult selectedItem = selector(item);
-
-                    if (selectedItem == null) { continue; }
-                    if (max == null || comparer.Compare(selectedItem, max) > 0) { max = selectedItem; }
-                }
-            }
-            else
-            {
-                using (IEnumerator<TSource> enumerator = source.GetEnumerator())
-                {
-                    bool has = enumerator.MoveNext();
-
-                    if (!has) { throw Exceptions.NoElements(); }
-
-                    max = selector(enumerator.Current);
-
-                    while (enumerator.MoveNext())
-                    {
-                        TResult selectedItem = selector(enumerator.Current);
-
-                        if (comparer.Compare(selectedItem, max) > 0) { max = selectedItem; }
-                    }
-                }
-            }
-
-            return max;
+            return Max(source.Select(selector));
         }
 
         #endregion Max Overloads
