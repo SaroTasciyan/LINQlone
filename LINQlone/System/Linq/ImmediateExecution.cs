@@ -16,7 +16,6 @@
 
 #endregion ENDOF: Copyright & License Information
 
-using System.Collections;
 using System.Collections.Generic;
 
 using LINQlone.Definitions;
@@ -897,7 +896,7 @@ namespace System.Linq
 
             foreach (float item in source) 
             { 
-                sum += (double)item; // ~ Unchecked; Result will be evaluted to Infinity instead of overflow
+                sum += item; // ~ Unchecked; Result will be evaluted to Infinity instead of overflow
             }
 
             return (float)sum;
@@ -995,7 +994,7 @@ namespace System.Linq
 
             foreach (float? item in source) 
             {
-                if (item.HasValue) { sum += (double)item.Value; }
+                if (item.HasValue) { sum += item.Value; }
             }
 
             return (float)sum;
@@ -1248,7 +1247,7 @@ namespace System.Linq
                 while (enumerator.MoveNext())
                 {
                     if (float.IsNaN(enumerator.Current)) { continue; }
-                    if ((double)enumerator.Current > (double)max || float.IsNaN(max)) { max = enumerator.Current; }
+                    if (enumerator.Current > (double)max || float.IsNaN(max)) { max = enumerator.Current; }
                 }
 
                 return max;
@@ -1445,7 +1444,7 @@ namespace System.Linq
                         float? item = enumerator.Current;
                         if (item.HasValue && !float.IsNaN(item.Value))
                         {
-                            if ((double)item.Value > (double)maximum.Value || float.IsNaN(maximum.Value)) { maximum = item; }
+                            if (item.Value > (double)maximum.Value || float.IsNaN(maximum.Value)) { maximum = item; }
                         }
                     }
                 }
@@ -1771,7 +1770,8 @@ namespace System.Linq
                         minimum = enumerator.Current;
                         break;
                     }
-                    else if ((double)enumerator.Current < (double)minimum) { minimum = enumerator.Current; }
+                    
+                    if (enumerator.Current < (double)minimum) { minimum = enumerator.Current; }
                 }
 
                 return minimum;
@@ -1974,7 +1974,7 @@ namespace System.Linq
                         if (item.HasValue)
                         {
                             if (float.IsNaN(item.Value)) { return item; }
-                            if ((double)item.Value < (double)minimum.Value) { minimum = item; }
+                            if (item.Value < (double)minimum.Value) { minimum = item; }
                         }
                     }
                 }

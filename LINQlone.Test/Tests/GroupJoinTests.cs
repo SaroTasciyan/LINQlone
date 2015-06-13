@@ -139,13 +139,13 @@ namespace LINQlone.Test
         [Test]
         public void GroupJoinOuterKeySelectorArgumentNull()
         {
-            Assert.Throws<ArgumentNullException>(() => DummyData.GroupJoin(DummyData, (Func<object, object>)null, x => x, (x, y) => x)).WithParameter("outerKeySelector");
+            Assert.Throws<ArgumentNullException>(() => DummyData.GroupJoin(DummyData, null, x => x, (x, y) => x)).WithParameter("outerKeySelector");
         }
 
         [Test]
         public void GroupJoinInnerKeySelectorArgumentNull()
         {
-            Assert.Throws<ArgumentNullException>(() => DummyData.GroupJoin(DummyData, x => x, (Func<object, object>)null, (x, y) => x)).WithParameter("innerKeySelector");
+            Assert.Throws<ArgumentNullException>(() => DummyData.GroupJoin(DummyData, x => x, null, (x, y) => x)).WithParameter("innerKeySelector");
         }
 
         [Test]
@@ -272,13 +272,13 @@ namespace LINQlone.Test
         [Test]
         public void GroupJoinWithComparerOuterKeySelectorArgumentNull()
         {
-            Assert.Throws<ArgumentNullException>(() => DummyData.GroupJoin(DummyData, (Func<object, object>)null, x => x, (x, y) => x, EqualityComparer<object>.Default)).WithParameter("outerKeySelector");
+            Assert.Throws<ArgumentNullException>(() => DummyData.GroupJoin(DummyData, null, x => x, (x, y) => x, EqualityComparer<object>.Default)).WithParameter("outerKeySelector");
         }
 
         [Test]
         public void GroupJoinWithComparerInnerKeySelectorArgumentNull()
         {
-            Assert.Throws<ArgumentNullException>(() => DummyData.GroupJoin(DummyData, x => x, (Func<object, object>)null, (x, y) => x, EqualityComparer<object>.Default)).WithParameter("innerKeySelector");
+            Assert.Throws<ArgumentNullException>(() => DummyData.GroupJoin(DummyData, x => x, null, (x, y) => x, EqualityComparer<object>.Default)).WithParameter("innerKeySelector");
         }
 
         [Test]

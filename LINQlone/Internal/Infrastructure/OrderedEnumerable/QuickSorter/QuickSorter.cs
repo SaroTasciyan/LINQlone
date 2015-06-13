@@ -61,7 +61,7 @@ namespace LINQlone.Infrastructure
                         while (currentRight >= 0 && mComparer.Compare(mData[currentRight], pivotValue) > 0) { currentRight--; } // # Right cursor
 
                         if (currentLeft > currentRight) { break; } // # Partitioning point
-                        else if (currentLeft < currentRight) { Swap(currentLeft, currentRight); }
+                        if (currentLeft < currentRight) { Swap(currentLeft, currentRight); }
                         
                         currentLeft++;
                         currentRight--;

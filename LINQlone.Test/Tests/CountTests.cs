@@ -105,7 +105,7 @@ namespace LINQlone.Test
         [Test]
         public void CountWithPredicatePredicateArgumentNull()
         {
-            Assert.Throws<ArgumentNullException>(() => DummyData.Count((Func<object, bool>)null)).WithParameter("predicate");
+            Assert.Throws<ArgumentNullException>(() => DummyData.Count(null)).WithParameter("predicate");
         }
 
         #endregion ENDOF: Count With Predicate

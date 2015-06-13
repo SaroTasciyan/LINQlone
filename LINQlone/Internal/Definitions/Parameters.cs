@@ -16,8 +16,6 @@
 
 #endregion ENDOF: Copyright & License Information
 
-using System;
-
 namespace LINQlone.Definitions
 {
     internal sealed class Parameter

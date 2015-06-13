@@ -40,10 +40,7 @@ namespace LINQlone.Test
 
             foreach (IGrouping<bool, int> group in enumerable)
             {
-                IEnumerable<int> groupEnumerable = (IEnumerable<int>)group;
-                foreach (int groupElement in groupEnumerable)
-                {
-                }
+                Assert.DoesNotThrow(() => group.Iterate());
             }
         }
 
@@ -240,7 +237,7 @@ namespace LINQlone.Test
         {
             Lookup<bool, int> lookup = (Lookup<bool, int>)Data(1, 2, 3, 4, 5).ToLookup(x => x % 2 == 0);
 
-            lookup.ApplyResultSelector((k, g) => (k == true ? "Even" : "Odd")).AssertEqual("Odd", "Even");
+            lookup.ApplyResultSelector((k, g) => (k ? "Even" : "Odd")).AssertEqual("Odd", "Even");
         }
 
         [Test]

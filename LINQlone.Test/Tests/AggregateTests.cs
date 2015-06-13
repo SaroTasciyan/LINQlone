@@ -55,7 +55,7 @@ namespace LINQlone.Test
         [Test]
         public void AggregateFuncArgumentNull()
         {
-            Assert.Throws<ArgumentNullException>(() => Data(1, 2, 3).Aggregate((Func<int, int, int>)null)).WithParameter("func");
+            Assert.Throws<ArgumentNullException>(() => Data(1, 2, 3).Aggregate(null)).WithParameter("func");
         }
 
         #endregion ENDOF: Aggregate
@@ -83,7 +83,7 @@ namespace LINQlone.Test
         [Test]
         public void AggregateWithSeedFuncArgumentNull()
         {
-            Assert.Throws<ArgumentNullException>(() => Data(1, 2, 3).Aggregate(0, (Func<int, int, int>)null)).WithParameter("func");
+            Assert.Throws<ArgumentNullException>(() => Data(1, 2, 3).Aggregate(0, null)).WithParameter("func");
         }
 
         #endregion ENDOF: Aggregate With Seed
@@ -111,7 +111,7 @@ namespace LINQlone.Test
         [Test]
         public void AggregateWithSeedAndResultSelectorFuncArgumentNull()
         {
-            Assert.Throws<ArgumentNullException>(() => Data(1, 2, 3).Aggregate(0, (Func<int, int, int>)null, x => true)).WithParameter("func");
+            Assert.Throws<ArgumentNullException>(() => Data(1, 2, 3).Aggregate(0, null, x => true)).WithParameter("func");
         }
 
         [Test]

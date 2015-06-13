@@ -81,9 +81,9 @@ namespace LINQlone.Test
             Country china, india, unknown;
             Data<Country> data = Data
             (
-                china = new Country() { Name = "China", Continent = "Asia" },
-                india = new Country() { Name = "India", Continent = "Asia" },
-                unknown = new Country() { Name = "Unknown", Continent = null }
+                china = new Country { Name = "China", Continent = "Asia" },
+                india = new Country { Name = "India", Continent = "Asia" },
+                unknown = new Country { Name = "Unknown", Continent = null }
             );
 
             IEnumerable<IGrouping<string, Country>> continentGroups = data.GroupBy(x => x.Continent);
@@ -108,8 +108,8 @@ namespace LINQlone.Test
             Country china, india, @null;
             Data<Country> data = Data
             (
-                china = new Country() { Name = "China", Continent = "Asia" },
-                india = new Country() { Name = "India", Continent = "Asia" },
+                china = new Country { Name = "China", Continent = "Asia" },
+                india = new Country { Name = "India", Continent = "Asia" },
                 @null = null
             );
 
@@ -224,9 +224,9 @@ namespace LINQlone.Test
         {
             Data<Country> data = Data
             (
-                new Country() { Name = "China", Continent = "Asia" },
-                new Country() { Name = "India", Continent = "Asia" },
-                new Country() { Name = "Unknown", Continent = null }
+                new Country { Name = "China", Continent = "Asia" },
+                new Country { Name = "India", Continent = "Asia" },
+                new Country { Name = "Unknown", Continent = null }
             );
 
             IEnumerable<IGrouping<string, string>> continentGroups = data.GroupBy(k => k.Continent, e => e.Name);
@@ -251,8 +251,8 @@ namespace LINQlone.Test
             Country china, india, @null;
             Data<Country> data = Data
             (
-                china = new Country() { Name = "China", Continent = "Asia" },
-                india = new Country() { Name = "India", Continent = "Asia" },
+                china = new Country { Name = "China", Continent = "Asia" },
+                india = new Country { Name = "India", Continent = "Asia" },
                 @null = null
             );
 
@@ -361,9 +361,9 @@ namespace LINQlone.Test
             Country china, india, unknown;
             Data<Country> data = Data
             (
-                china = new Country() { Name = "China", Continent = "Asia" },
-                india = new Country() { Name = "India", Continent = "Asia" },
-                unknown = new Country() { Name = "Unknown", Continent = null }
+                china = new Country { Name = "China", Continent = "Asia" },
+                india = new Country { Name = "India", Continent = "Asia" },
+                unknown = new Country { Name = "Unknown", Continent = null }
             );
 
             data.GroupBy(k => k.Continent, (k, c) => StringHelper.Join(k, c)).AssertEqual(String.Format("Asia,{0},{1}", china, india), unknown.ToString());
@@ -375,8 +375,8 @@ namespace LINQlone.Test
             Country china, india, @null;
             Data<Country> data = Data
             (
-                china = new Country() { Name = "China", Continent = "Asia" },
-                india = new Country() { Name = "India", Continent = "Asia" },
+                china = new Country { Name = "China", Continent = "Asia" },
+                india = new Country { Name = "India", Continent = "Asia" },
                 @null = null
             );
 
@@ -442,12 +442,11 @@ namespace LINQlone.Test
         [Test]
         public void GroupByWithElementAndResultSelectorNullKey()
         {
-            Country china, india, unknown;
             Data<Country> data = Data
             (
-                china = new Country() { Name = "China", Continent = "Asia" },
-                india = new Country() { Name = "India", Continent = "Asia" },
-                unknown = new Country() { Name = "Unknown", Continent = null }
+                new Country { Name = "China", Continent = "Asia" },
+                new Country { Name = "India", Continent = "Asia" },
+                new Country { Name = "Unknown", Continent = null }
             );
 
             data.GroupBy(k => k.Continent, e => e.Name, (k, c) => StringHelper.Join(k, c)).AssertEqual("Asia,China,India", "Unknown");
@@ -459,8 +458,8 @@ namespace LINQlone.Test
             Country china, india, @null;
             Data<Country> data = Data
             (
-                china = new Country() { Name = "China", Continent = "Asia" },
-                india = new Country() { Name = "India", Continent = "Asia" },
+                china = new Country { Name = "China", Continent = "Asia" },
+                india = new Country { Name = "India", Continent = "Asia" },
                 @null = null
             );
 
@@ -557,9 +556,9 @@ namespace LINQlone.Test
             Country china, india, unknown;
             Data<Country> data = Data
             (
-                china = new Country() { Name = "China", Continent = "Asia" },
-                india = new Country() { Name = "India", Continent = "Asia" },
-                unknown = new Country() { Name = "Unknown", Continent = null }
+                china = new Country { Name = "China", Continent = "Asia" },
+                india = new Country { Name = "India", Continent = "Asia" },
+                unknown = new Country { Name = "Unknown", Continent = null }
             );
 
             IEnumerable<IGrouping<string, Country>> continentGroups = data.GroupBy(x => x.Continent, EqualityComparer<string>.Default);
@@ -584,8 +583,8 @@ namespace LINQlone.Test
             Country china, india, @null;
             Data<Country> data = Data
             (
-                china = new Country() { Name = "China", Continent = "Asia" },
-                india = new Country() { Name = "India", Continent = "Asia" },
+                china = new Country { Name = "China", Continent = "Asia" },
+                india = new Country { Name = "India", Continent = "Asia" },
                 @null = null
             );
 
@@ -614,9 +613,9 @@ namespace LINQlone.Test
         {
             Data<Country> data = Data
             (
-                new Country() { Name = "China", Continent = "Asia" },
-                new Country() { Name = "Unknown1", Continent = null },
-                new Country() { Name = "Unknown2", Continent = null }
+                new Country { Name = "China", Continent = "Asia" },
+                new Country { Name = "Unknown1", Continent = null },
+                new Country { Name = "Unknown2", Continent = null }
             );
             ThrowingStringEqualityComparer comparer = new ThrowingStringEqualityComparer();
 
@@ -673,7 +672,7 @@ namespace LINQlone.Test
         [Test]
         public void GroupByWithComparerKeySelectorArgumentNull()
         {
-            Assert.Throws<ArgumentNullException>(() => DummyData.GroupBy((Func<object, object>)null, EqualityComparer<object>.Default)).WithParameter("keySelector");
+            Assert.Throws<ArgumentNullException>(() => DummyData.GroupBy(null, EqualityComparer<object>.Default)).WithParameter("keySelector");
         }
 
         #endregion ENDOF: GroupBy With Comparer
@@ -720,9 +719,9 @@ namespace LINQlone.Test
         {
             Data<Country> data = Data
             (
-                new Country() { Name = "China", Continent = "Asia" },
-                new Country() { Name = "India", Continent = "Asia" },
-                new Country() { Name = "Unknown", Continent = null }
+                new Country { Name = "China", Continent = "Asia" },
+                new Country { Name = "India", Continent = "Asia" },
+                new Country { Name = "Unknown", Continent = null }
             );
 
             IEnumerable<IGrouping<string, string>> continentGroups = data.GroupBy(k => k.Continent, e => e.Name, EqualityComparer<string>.Default);
@@ -747,8 +746,8 @@ namespace LINQlone.Test
             Country china, india, @null;
             Data<Country> data = Data
             (
-                china = new Country() { Name = "China", Continent = "Asia" },
-                india = new Country() { Name = "India", Continent = "Asia" },
+                china = new Country { Name = "China", Continent = "Asia" },
+                india = new Country { Name = "India", Continent = "Asia" },
                 @null = null
             );
 
@@ -777,9 +776,9 @@ namespace LINQlone.Test
         {
             Data<Country> data = Data
             (
-                new Country() { Name = "China", Continent = "Asia" },
-                new Country() { Name = "Unknown1", Continent = null },
-                new Country() { Name = "Unknown2", Continent = null }
+                new Country { Name = "China", Continent = "Asia" },
+                new Country { Name = "Unknown1", Continent = null },
+                new Country { Name = "Unknown2", Continent = null }
             );
             ThrowingStringEqualityComparer comparer = new ThrowingStringEqualityComparer();
 
@@ -836,7 +835,7 @@ namespace LINQlone.Test
         [Test]
         public void GroupByWithElementSelectorComparerKeySelectorArgumentNull()
         {
-            Assert.Throws<ArgumentNullException>(() => DummyData.GroupBy((Func<object, object>)null, e => e, EqualityComparer<object>.Default)).WithParameter("keySelector");
+            Assert.Throws<ArgumentNullException>(() => DummyData.GroupBy(null, e => e, EqualityComparer<object>.Default)).WithParameter("keySelector");
         }
 
         [Test]
@@ -877,9 +876,9 @@ namespace LINQlone.Test
             Country china, india, unknown;
             Data<Country> data = Data
             (
-                china = new Country() { Name = "China", Continent = "Asia" },
-                india = new Country() { Name = "India", Continent = "Asia" },
-                unknown = new Country() { Name = "Unknown", Continent = null }
+                china = new Country { Name = "China", Continent = "Asia" },
+                india = new Country { Name = "India", Continent = "Asia" },
+                unknown = new Country { Name = "Unknown", Continent = null }
             );
 
             data.GroupBy(k => k.Continent, (k, c) => StringHelper.Join(k, c), EqualityComparer<string>.Default)
@@ -892,8 +891,8 @@ namespace LINQlone.Test
             Country china, india, @null;
             Data<Country> data = Data
             (
-                china = new Country() { Name = "China", Continent = "Asia" },
-                india = new Country() { Name = "India", Continent = "Asia" },
+                china = new Country { Name = "China", Continent = "Asia" },
+                india = new Country { Name = "India", Continent = "Asia" },
                 @null = null
             );
 
@@ -905,9 +904,9 @@ namespace LINQlone.Test
         {
             Data<Country> data = Data
             (
-                new Country() { Name = "China", Continent = "Asia" },
-                new Country() { Name = "Unknown1", Continent = null },
-                new Country() { Name = "Unknown2", Continent = null }
+                new Country { Name = "China", Continent = "Asia" },
+                new Country { Name = "Unknown1", Continent = null },
+                new Country { Name = "Unknown2", Continent = null }
             );
             ThrowingStringEqualityComparer comparer = new ThrowingStringEqualityComparer();
 
@@ -941,7 +940,7 @@ namespace LINQlone.Test
         [Test]
         public void GroupByWithResultSelectorComparerKeySelectorArgumentNull()
         {
-            Assert.Throws<ArgumentNullException>(() => DummyData.GroupBy((Func<object, object>)null, (k, c) => k, EqualityComparer<object>.Default))
+            Assert.Throws<ArgumentNullException>(() => DummyData.GroupBy(null, (k, c) => k, EqualityComparer<object>.Default))
                 .WithParameter("keySelector");
         }
 
@@ -982,12 +981,11 @@ namespace LINQlone.Test
         [Test]
         public void GroupByWithElementAndResultSelectorComparerNullKey()
         {
-            Country china, india, unknown;
             Data<Country> data = Data
             (
-                china = new Country() { Name = "China", Continent = "Asia" },
-                india = new Country() { Name = "India", Continent = "Asia" },
-                unknown = new Country() { Name = "Unknown", Continent = null }
+                new Country { Name = "China", Continent = "Asia" },
+                new Country { Name = "India", Continent = "Asia" },
+                new Country { Name = "Unknown", Continent = null }
             );
 
             data.GroupBy(k => k.Continent, e => e.Name, (k, c) => StringHelper.Join(k, c), EqualityComparer<string>.Default)
@@ -1000,8 +998,8 @@ namespace LINQlone.Test
             Country china, india, @null;
             Data<Country> data = Data
             (
-                china = new Country() { Name = "China", Continent = "Asia" },
-                india = new Country() { Name = "India", Continent = "Asia" },
+                china = new Country { Name = "China", Continent = "Asia" },
+                india = new Country { Name = "India", Continent = "Asia" },
                 @null = null
             );
 
@@ -1013,9 +1011,9 @@ namespace LINQlone.Test
         {
             Data<Country> data = Data
             (
-                new Country() { Name = "China", Continent = "Asia" },
-                new Country() { Name = "Unknown1", Continent = null },
-                new Country() { Name = "Unknown2", Continent = null }
+                new Country { Name = "China", Continent = "Asia" },
+                new Country { Name = "Unknown1", Continent = null },
+                new Country { Name = "Unknown2", Continent = null }
             );
             ThrowingStringEqualityComparer comparer = new ThrowingStringEqualityComparer();
 
@@ -1050,7 +1048,7 @@ namespace LINQlone.Test
         [Test]
         public void GroupByWithElementAndResultSelectorComparerKeySelectorArgumentNull()
         {
-            Assert.Throws<ArgumentNullException>(() => DummyData.GroupBy((Func<object, object>)null, e => e, (k, c) => k, EqualityComparer<object>.Default))
+            Assert.Throws<ArgumentNullException>(() => DummyData.GroupBy(null, e => e, (k, c) => k, EqualityComparer<object>.Default))
                 .WithParameter("keySelector");
         }
 

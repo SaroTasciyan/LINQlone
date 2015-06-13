@@ -24,7 +24,7 @@ namespace LINQlone.Test
 {
     public static class StringHelper
     {
-        public const string Seperator = ",";
+        public const string SEPERATOR = ",";
 
         public static string Join<TStarting, TSource>(TStarting starting, IEnumerable<TSource> source)
         {
@@ -37,7 +37,7 @@ namespace LINQlone.Test
 
             foreach (TSource item in source)
             {
-                if (stringBuilder.Length > 0) { stringBuilder.Append(Seperator); }
+                if (stringBuilder.Length > 0) { stringBuilder.Append(SEPERATOR); }
 
                 stringBuilder.Append(item);
             }

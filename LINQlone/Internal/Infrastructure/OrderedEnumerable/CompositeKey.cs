@@ -52,7 +52,8 @@ namespace LINQlone.Infrastructure
                 if (comparisonResult == 0)
                 {
                     if (mSecondComparer == null) { return 0; }
-                    else { comparisonResult =  mSecondComparer.Compare(x.Second, y.Second); }
+                    
+                    comparisonResult =  mSecondComparer.Compare(x.Second, y.Second);
                 }
                 
                 return comparisonResult;

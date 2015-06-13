@@ -35,7 +35,7 @@ namespace LINQlone.Infrastructure
         #region Fields
 
         private T[] mSource;
-        private int mCount;
+        private readonly int mCount;
 
         #endregion ENDOF: Fields
 
@@ -104,12 +104,11 @@ namespace LINQlone.Infrastructure
         {
             if (mCount == 0) { return new T[0]; }
             if (mSource.Length == mCount) { return mSource; }
-            else // # Buffer has no excess slots, resizing buffer to proper length
-            {
-                Array.Resize(ref mSource, mCount);
+            
+            // # Buffer has no excess slots, resizing buffer to proper length
+            Array.Resize(ref mSource, mCount);
 
-                return mSource;
-            }
+            return mSource;
         }
 
         #endregion ENDOF: Methods

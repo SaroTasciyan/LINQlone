@@ -26,12 +26,7 @@ namespace LINQlone.Infrastructure
 
         internal static IEnumerable<T> Instance
         {
-            get
-            {
-                if (mCurrentInstance == null) { mCurrentInstance = new T[0]; }
-
-                return mCurrentInstance;
-            }
+            get { return mCurrentInstance ?? (mCurrentInstance = new T[0]); }
         }
     }
 }

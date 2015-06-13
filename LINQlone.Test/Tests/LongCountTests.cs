@@ -85,7 +85,7 @@ namespace LINQlone.Test
         [Test]
         public void LongCountWithPredicatePredicateArgumentNull()
         {
-            Assert.Throws<ArgumentNullException>(() => DummyData.LongCount((Func<object, bool>)null)).WithParameter("predicate");
+            Assert.Throws<ArgumentNullException>(() => DummyData.LongCount(null)).WithParameter("predicate");
         }
 
         #endregion ENDOF: LongCount With Predicate

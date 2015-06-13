@@ -115,7 +115,7 @@ namespace LINQlone.Test
         [Test]
         public void FirstOrDefaultWithPredicatePredicateArgumentNull()
         {
-            Assert.Throws<ArgumentNullException>(() => DummyData.FirstOrDefault((Func<object, bool>)null)).WithParameter("predicate");
+            Assert.Throws<ArgumentNullException>(() => DummyData.FirstOrDefault(null)).WithParameter("predicate");
         }
 
         #endregion ENDOF: FirstOrDefault With Predicate

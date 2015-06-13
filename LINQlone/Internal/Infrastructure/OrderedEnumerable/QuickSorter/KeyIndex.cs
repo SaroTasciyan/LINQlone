@@ -48,7 +48,8 @@ namespace LINQlone.Infrastructure
                 int keyComparisonResult = mKeyComparer.Compare(x.Key, y.Key);
 
                 if (keyComparisonResult == 0) { return (x.Index - y.Index); } // # Values are equal. Index values are compared to achieve stable order.
-                else { return keyComparisonResult; }
+                
+                return keyComparisonResult;
             }
 
             #endregion

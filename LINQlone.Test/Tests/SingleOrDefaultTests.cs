@@ -129,7 +129,7 @@ namespace LINQlone.Test
         [Test]
         public void SingleOrDefaultWithPredicatePredicateArgumentNull()
         {
-            Assert.Throws<ArgumentNullException>(() => DummyData.SingleOrDefault((Func<object, bool>)null)).WithParameter("predicate");
+            Assert.Throws<ArgumentNullException>(() => DummyData.SingleOrDefault(null)).WithParameter("predicate");
         }
 
         [Test]

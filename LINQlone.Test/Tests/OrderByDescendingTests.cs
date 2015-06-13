@@ -208,7 +208,7 @@ namespace LINQlone.Test
         [Test]
         public void OrderByDescendingWithComparerKeySelectorArgumentNull()
         {
-            Assert.Throws<ArgumentNullException>(() => DummyData.OrderByDescending((Func<object, object>)null, Comparer<object>.Default)).WithParameter("keySelector");
+            Assert.Throws<ArgumentNullException>(() => DummyData.OrderByDescending(null, Comparer<object>.Default)).WithParameter("keySelector");
         }
 
         #endregion ENDOF: OrderByDescending With Comparer

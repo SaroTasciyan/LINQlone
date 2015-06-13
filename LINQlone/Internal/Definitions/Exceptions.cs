@@ -26,13 +26,13 @@ namespace LINQlone.Definitions
 
         private static class Messages
         {
-            internal const string ArgumentNull = "Value cannot be null.";
-            internal const string ArgumentOutOfRange = "Specified argument was out of the range of valid values.";
-            internal const string NoElements = "Sequence contains no elements";
-            internal const string NoMatchingElements = "Sequence contains no matching element";
-            internal const string MoreThanOneElements = "Sequence contains more than one element";
-            internal const string MoreThanOneMatchingElements = "Sequence contains more than one matching element";
-            internal const string NotSupported = "Specified method is not supported.";
+            internal const string ARGUMENT_NULL = "Value cannot be null.";
+            internal const string ARGUMENT_OUT_OF_RANGE = "Specified argument was out of the range of valid values.";
+            internal const string NO_ELEMENTS = "Sequence contains no elements";
+            internal const string NO_MATCHING_ELEMENTS = "Sequence contains no matching element";
+            internal const string MORE_THAN_ONE_ELEMENTS = "Sequence contains more than one element";
+            internal const string MORE_THAN_ONE_MATCHING_ELEMENTS = "Sequence contains more than one matching element";
+            internal const string NOT_SUPPORTED = "Specified method is not supported.";
         }
 
         #endregion ENDOF: Messages        
@@ -41,37 +41,37 @@ namespace LINQlone.Definitions
 
         internal static ArgumentNullException ArgumentNull(Parameter parameter)
         {
-            return new ArgumentNullException(parameter.Name, Messages.ArgumentNull);
+            return new ArgumentNullException(parameter.Name, Messages.ARGUMENT_NULL);
         }
 
         internal static ArgumentOutOfRangeException ArgumentOutOfRange(Parameter parameter)
         {
-            return new ArgumentOutOfRangeException(parameter.Name, Messages.ArgumentOutOfRange);
+            return new ArgumentOutOfRangeException(parameter.Name, Messages.ARGUMENT_OUT_OF_RANGE);
         }
 
         internal static InvalidOperationException NoElements()
         {
-            return new InvalidOperationException(Messages.NoElements);
+            return new InvalidOperationException(Messages.NO_ELEMENTS);
         }
 
         internal static InvalidOperationException NoMatchingElements()
         {
-            return new InvalidOperationException(Messages.NoMatchingElements);
+            return new InvalidOperationException(Messages.NO_MATCHING_ELEMENTS);
         }
 
         internal static InvalidOperationException MoreThanOneElements()
         {
-            return new InvalidOperationException(Messages.MoreThanOneElements);
+            return new InvalidOperationException(Messages.MORE_THAN_ONE_ELEMENTS);
         }
 
         internal static InvalidOperationException MoreThanOneMatchingElements()
         {
-            return new InvalidOperationException(Messages.MoreThanOneMatchingElements);
+            return new InvalidOperationException(Messages.MORE_THAN_ONE_MATCHING_ELEMENTS);
         }
 
         internal static NotSupportedException NotSupported()
         {
-            return new NotSupportedException(Messages.NotSupported);
+            return new NotSupportedException(Messages.NOT_SUPPORTED);
         }
 
         #endregion ENDOF: Methods

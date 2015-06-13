@@ -213,8 +213,8 @@ namespace LINQlone.Test
         [Test]
         public void ExceptWithComparerEqualsIsCalledForRepeatingNullValue()
         {
-            Data<string> first = Data<string>(null, "a", "b");
-            Data<string> second = Data<string>("b", "c", null);
+            Data<string> first = Data(null, "a", "b");
+            Data<string> second = Data("b", "c", null);
             ThrowingStringEqualityComparer comparer = new ThrowingStringEqualityComparer();
 
             Assert.Throws<NullReferenceException>(() => first.Except(second, comparer).Iterate());

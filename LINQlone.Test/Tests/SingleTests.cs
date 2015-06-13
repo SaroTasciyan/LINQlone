@@ -125,7 +125,7 @@ namespace LINQlone.Test
         [Test]
         public void SingleWithPredicatePredicateArgumentNull()
         {
-            Assert.Throws<ArgumentNullException>(() => DummyData.Single((Func<object, bool>)null)).WithParameter("predicate");
+            Assert.Throws<ArgumentNullException>(() => DummyData.Single(null)).WithParameter("predicate");
         }
 
         #endregion ENDOF: Single With Predicate

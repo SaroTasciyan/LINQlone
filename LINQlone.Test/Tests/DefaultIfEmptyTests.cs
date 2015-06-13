@@ -43,7 +43,7 @@ namespace LINQlone.Test
         [Test]
         public void DefaultIfEmptyStreamingExecution()
         {
-            IEnumerable<object> enumerable = LateThrowingData().DefaultIfEmpty<object>();
+            IEnumerable<object> enumerable = LateThrowingData().DefaultIfEmpty();
 
             Assert.DoesNotThrow(() => enumerable.MoveNext()); // # LateThrownException was not thrown since sequence was not fully enumerated
         }
@@ -94,7 +94,7 @@ namespace LINQlone.Test
         [Test]
         public void DefaultIfEmptyWithDefaultValueStreamingExecution()
         {
-            IEnumerable<object> enumerable = LateThrowingData().DefaultIfEmpty<object>(new object());
+            IEnumerable<object> enumerable = LateThrowingData().DefaultIfEmpty(new object());
 
             Assert.DoesNotThrow(() => enumerable.MoveNext()); // # LateThrownException was not thrown since sequence was not fully enumerated
         }
