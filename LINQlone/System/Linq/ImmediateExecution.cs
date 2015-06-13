@@ -2570,29 +2570,7 @@ namespace System.Linq
         /// <exception cref="System.OverflowException">The sum of the elements in the sequence is larger than System.Int64.MaxValue.</exception>
         public static double? Average<TSource>(this IEnumerable<TSource> source, Func<TSource, int?> selector)
         {
-            if (source == null) { throw Exceptions.ArgumentNull(Parameter.Source); }
-            if (selector == null) { throw Exceptions.ArgumentNull(Parameter.Selector); }
-
-            long sum = 0L;
-            long count = 0L;
-
-            foreach (TSource item in source)
-            {
-                int? selectedNullable = selector(item);
-
-                if (selectedNullable.HasValue)
-                {
-                    checked
-                    {
-                        sum += selectedNullable.Value;
-                        count++;
-                    }
-                }
-            }
-
-            if (count == 0) { return new double?(); }
-
-            return (double)sum / count;
+            return Average(source.Select(selector));
         }
 
         /// <summary>
@@ -2607,29 +2585,7 @@ namespace System.Linq
         /// <exception cref="System.OverflowException">The sum of the elements in the sequence is larger than System.Int64.MaxValue.</exception>
         public static double Average<TSource>(this IEnumerable<TSource> source, Func<TSource, int> selector)
         {
-            if (source == null) { throw Exceptions.ArgumentNull(Parameter.Source); }
-            if (selector == null) { throw Exceptions.ArgumentNull(Parameter.Selector); }
-
-            long sum = 0L;
-            long count = 0L;
-
-            foreach (TSource item in source)
-            {
-                int selectedValue = selector(item);
-
-                checked
-                {
-                    sum += selectedValue;
-                    count++;
-                }
-            }
-
-            if (count == 0)
-            {
-                throw Exceptions.NoElements();
-            }
-
-            return (double)sum / count;
+            return Average(source.Select(selector));
         }
 
         /// <summary>
@@ -2641,29 +2597,7 @@ namespace System.Linq
         /// <returns>The average of the sequence of values, or null if the source sequence is empty or contains only values that are null.</returns>
         public static double? Average<TSource>(this IEnumerable<TSource> source, Func<TSource, long?> selector)
         {
-            if (source == null) { throw Exceptions.ArgumentNull(Parameter.Source); }
-            if (selector == null) { throw Exceptions.ArgumentNull(Parameter.Selector); }
-
-            long sum = 0L;
-            long count = 0L;
-
-            foreach (TSource item in source)
-            {
-                long? selectedNullable = selector(item);
-
-                if (selectedNullable.HasValue)
-                {
-                    checked
-                    {
-                        sum += selectedNullable.Value;
-                        count++;
-                    }
-                }
-            }
-
-            if (count == 0) { return new long?(); }
-
-            return (double)sum / count;
+            return Average(source.Select(selector));
         }
 
         /// <summary>
@@ -2678,29 +2612,7 @@ namespace System.Linq
         /// <exception cref="System.OverflowException">The sum of the elements in the sequence is larger than System.Int64.MaxValue.</exception>
         public static double Average<TSource>(this IEnumerable<TSource> source, Func<TSource, long> selector)
         {
-            if (source == null) { throw Exceptions.ArgumentNull(Parameter.Source); }
-            if (selector == null) { throw Exceptions.ArgumentNull(Parameter.Selector); }
-
-            long sum = 0L;
-            long count = 0L;
-
-            foreach (TSource item in source)
-            {
-                long selectedValue = selector(item);
-
-                checked
-                {
-                    sum += selectedValue;
-                    count++;
-                }
-            }
-
-            if (count == 0)
-            {
-                throw Exceptions.NoElements(); // ~ Source had no elements, operation is invalid.
-            }
-
-            return (double)sum / count;
+            return Average(source.Select(selector));
         }
 
         /// <summary>
@@ -2713,29 +2625,7 @@ namespace System.Linq
         /// <exception cref="System.ArgumentNullException">source or selector is null.</exception>
         public static float? Average<TSource>(this IEnumerable<TSource> source, Func<TSource, float?> selector)
         {
-            if (source == null) { throw Exceptions.ArgumentNull(Parameter.Source); }
-            if (selector == null) { throw Exceptions.ArgumentNull(Parameter.Selector); }
-
-            double sum = 0D;
-            long count = 0L;
-
-            foreach (TSource item in source)
-            {
-                float? selectedNullable = selector(item);
-
-                if (selectedNullable.HasValue)
-                {
-                    checked
-                    {
-                        sum += selectedNullable.Value;
-                        count++;
-                    }
-                }
-            }
-
-            if (count == 0) { return new float?(); }
-
-            return (float)(sum / count);
+            return Average(source.Select(selector));
         }
 
         /// <summary>
@@ -2749,29 +2639,7 @@ namespace System.Linq
         /// <exception cref="System.InvalidOperationException">source contains no elements.</exception>
         public static float Average<TSource>(this IEnumerable<TSource> source, Func<TSource, float> selector)
         {
-            if (source == null) { throw Exceptions.ArgumentNull(Parameter.Source); }
-            if (selector == null) { throw Exceptions.ArgumentNull(Parameter.Selector); }
-
-            double sum = 0D;
-            long count = 0L;
-
-            foreach (TSource item in source)
-            {
-                float selectedValue = selector(item);
-
-                checked
-                {
-                    sum += selectedValue;
-                    count++;
-                }
-            }
-
-            if (count == 0)
-            {
-                throw Exceptions.NoElements();
-            }
-
-            return (float)(sum / count);
+            return Average(source.Select(selector));
         }
 
         /// <summary>
@@ -2785,29 +2653,7 @@ namespace System.Linq
         /// <exception cref="System.OverflowException">The sum of the elements in the sequence is larger than System.Decimal.MaxValue.</exception>
         public static decimal? Average<TSource>(this IEnumerable<TSource> source, Func<TSource, decimal?> selector)
         {
-            if (source == null) { throw Exceptions.ArgumentNull(Parameter.Source); }
-            if (selector == null) { throw Exceptions.ArgumentNull(Parameter.Selector); }
-
-            decimal sum = 0M;
-            long count = 0L;
-
-            foreach (TSource item in source)
-            {
-                decimal? selectedNullable = selector(item);
-
-                if (selectedNullable.HasValue)
-                {
-                    checked
-                    {
-                        sum += selectedNullable.Value;
-                        count++;
-                    }
-                }
-            }
-
-            if (count == 0) { return new decimal?(); }
-
-            return sum / count;
+            return Average(source.Select(selector));
         }
 
         /// <summary>
@@ -2822,29 +2668,7 @@ namespace System.Linq
         /// <exception cref="System.OverflowException">The sum of the elements in the sequence is larger than System.Decimal.MaxValue.</exception>
         public static decimal Average<TSource>(this IEnumerable<TSource> source, Func<TSource, decimal> selector)
         {
-            if (source == null) { throw Exceptions.ArgumentNull(Parameter.Source); }
-            if (selector == null) { throw Exceptions.ArgumentNull(Parameter.Selector); }
-
-            decimal sum = 0M;
-            long count = 0L;
-
-            foreach (TSource item in source)
-            {
-                decimal selectedValue = selector(item);
-
-                checked
-                {
-                    sum += selectedValue;
-                    count++;
-                }
-            }
-
-            if (count == 0)
-            {
-                throw Exceptions.NoElements();
-            }
-
-            return sum / count;
+            return Average(source.Select(selector));
         }
 
         /// <summary>
@@ -2857,29 +2681,7 @@ namespace System.Linq
         /// <exception cref="System.ArgumentNullException">source or selector is null.</exception>
         public static double? Average<TSource>(this IEnumerable<TSource> source, Func<TSource, double?> selector)
         {
-            if (source == null) { throw Exceptions.ArgumentNull(Parameter.Source); }
-            if (selector == null) { throw Exceptions.ArgumentNull(Parameter.Selector); }
-
-            double sum = 0D;
-            long count = 0L;
-
-            foreach (TSource item in source)
-            {
-                double? selectedNullable = selector(item);
-
-                if (selectedNullable.HasValue)
-                {
-                    checked
-                    {
-                        sum += selectedNullable.Value;
-                        count++;
-                    }
-                }
-            }
-
-            if (count == 0) { return new double?(); }
-
-            return sum / count;
+            return Average(source.Select(selector));
         }
 
         /// <summary>
@@ -2893,29 +2695,7 @@ namespace System.Linq
         /// <exception cref="System.InvalidOperationException">source contains no elements.</exception>
         public static double Average<TSource>(this IEnumerable<TSource> source, Func<TSource, double> selector)
         {
-            if (source == null) { throw Exceptions.ArgumentNull(Parameter.Source); }
-            if (selector == null) { throw Exceptions.ArgumentNull(Parameter.Selector); }
-
-            double sum = 0D;
-            long count = 0L;
-
-            foreach (TSource item in source)
-            {
-                double selectedValue = selector(item);
-
-                checked
-                {
-                    sum += selectedValue;
-                    count++;
-                }
-            }
-
-            if (count == 0)
-            {
-                throw Exceptions.NoElements();
-            }
-
-            return sum / count;
+            return Average(source.Select(selector));
         }
 
         #endregion ENDOF: Average Overloads
