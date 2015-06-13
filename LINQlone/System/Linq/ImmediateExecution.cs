@@ -2106,25 +2106,7 @@ namespace System.Linq
         /// <exception cref="System.InvalidOperationException">source contains no elements.</exception>
         public static int Min<TSource>(this IEnumerable<TSource> source, Func<TSource, int> selector)
         {
-            if (source == null) { throw Exceptions.ArgumentNull(Parameter.Source); }
-            if (selector == null) { throw Exceptions.ArgumentNull(Parameter.Selector); }
-
-            using (IEnumerator<TSource> enumerator = source.GetEnumerator())
-            {
-                bool has = enumerator.MoveNext();
-
-                if (!has) { throw Exceptions.NoElements(); }
-
-                int min = selector(enumerator.Current);
-
-                while (enumerator.MoveNext())
-                {
-                    int value = selector(enumerator.Current);
-                    if (value < min) { min = value; }
-                }
-
-                return min;
-            }
+            return Min(source.Select(selector));
         }
 
         /// <summary>
@@ -2138,25 +2120,7 @@ namespace System.Linq
         /// <exception cref="System.InvalidOperationException">source contains no elements.</exception>
         public static long Min<TSource>(this IEnumerable<TSource> source, Func<TSource, long> selector)
         {
-            if (source == null) { throw Exceptions.ArgumentNull(Parameter.Source); }
-            if (selector == null) { throw Exceptions.ArgumentNull(Parameter.Selector); }
-
-            using (IEnumerator<TSource> enumerator = source.GetEnumerator())
-            {
-                bool has = enumerator.MoveNext();
-
-                if (!has) { throw Exceptions.NoElements(); }
-
-                long min = selector(enumerator.Current);
-
-                while (enumerator.MoveNext())
-                {
-                    long value = selector(enumerator.Current);
-                    if (value < min) { min = value; }
-                }
-
-                return min;
-            }
+            return Min(source.Select(selector));
         }
 
         /// <summary>
@@ -2170,32 +2134,7 @@ namespace System.Linq
         /// <exception cref="System.InvalidOperationException">source contains no elements.</exception>
         public static float Min<TSource>(this IEnumerable<TSource> source, Func<TSource, float> selector)
         {
-            if (source == null) { throw Exceptions.ArgumentNull(Parameter.Source); }
-            if (selector == null) { throw Exceptions.ArgumentNull(Parameter.Selector); }
-
-            using (IEnumerator<TSource> enumerator = source.GetEnumerator())
-            {
-                bool has = enumerator.MoveNext();
-
-                if (!has) { throw Exceptions.NoElements(); }
-
-                float minimum = selector(enumerator.Current);
-                if (float.IsNaN(minimum)) { return minimum; }
-
-                while (enumerator.MoveNext())
-                {
-                    float value = selector(enumerator.Current);
-                    
-                    if (float.IsNaN(value)) 
-                    {
-                        minimum = value;
-                        break;
-                    }
-                    else if ((double)value < (double)minimum) { minimum = value; }
-                }
-
-                return minimum;
-            }
+            return Min(source.Select(selector));
         }
 
         /// <summary>
@@ -2209,32 +2148,7 @@ namespace System.Linq
         /// <exception cref="System.InvalidOperationException">source contains no elements.</exception>
         public static double Min<TSource>(this IEnumerable<TSource> source, Func<TSource, double> selector)
         {
-            if (source == null) { throw Exceptions.ArgumentNull(Parameter.Source); }
-            if (selector == null) { throw Exceptions.ArgumentNull(Parameter.Selector); }
-
-            using (IEnumerator<TSource> enumerator = source.GetEnumerator())
-            {
-                bool has = enumerator.MoveNext();
-
-                if (!has) { throw Exceptions.NoElements(); }
-
-                double minimum = selector(enumerator.Current);
-                if (double.IsNaN(minimum)) { return minimum; }
-
-                while (enumerator.MoveNext())
-                {
-                    double value = selector(enumerator.Current);
-                    
-                    if (double.IsNaN(value)) 
-                    {
-                        minimum = value;
-                        break;
-                    }
-                    else if (value < minimum) { minimum = value; }
-                }
-
-                return minimum;
-            }
+            return Min(source.Select(selector));
         }
 
         /// <summary>
@@ -2248,25 +2162,7 @@ namespace System.Linq
         /// <exception cref="System.InvalidOperationException">source contains no elements.</exception>
         public static decimal Min<TSource>(this IEnumerable<TSource> source, Func<TSource, decimal> selector)
         {
-            if (source == null) { throw Exceptions.ArgumentNull(Parameter.Source); }
-            if (selector == null) { throw Exceptions.ArgumentNull(Parameter.Selector); }
-
-            using (IEnumerator<TSource> enumerator = source.GetEnumerator())
-            {
-                bool has = enumerator.MoveNext();
-
-                if (!has) { throw Exceptions.NoElements(); }
-
-                decimal min = selector(enumerator.Current);
-
-                while (enumerator.MoveNext())
-                {
-                    decimal value = selector(enumerator.Current);
-                    if (value < min) { min = value; }
-                }
-
-                return min;
-            }
+            return Min(source.Select(selector));
         }
 
         /// <summary>
@@ -2279,33 +2175,7 @@ namespace System.Linq
         /// <exception cref="System.ArgumentNullException">source or selector is null.</exception>
         public static int? Min<TSource>(this IEnumerable<TSource> source, Func<TSource, int?> selector)
         {
-            if (source == null) { throw Exceptions.ArgumentNull(Parameter.Source); }
-            if (selector == null) { throw Exceptions.ArgumentNull(Parameter.Selector); }
-
-            int? minimum = new int?();
-            using (IEnumerator<TSource> enumerator = source.GetEnumerator())
-            {
-                while (enumerator.MoveNext())
-                {
-                    int? item = selector(enumerator.Current);
-                    if (item.HasValue)
-                    {
-                        minimum = item;
-                        break;
-                    }
-                }
-
-                if (minimum.HasValue)
-                {
-                    while (enumerator.MoveNext())
-                    {
-                        int? item = selector(enumerator.Current);
-                        if (item.HasValue && item.Value < minimum.Value) { minimum = item; }
-                    }
-                }
-            }
-
-            return minimum;
+            return Min(source.Select(selector));
         }
 
         /// <summary>
@@ -2318,33 +2188,7 @@ namespace System.Linq
         /// <exception cref="System.ArgumentNullException">source or selector is null.</exception>
         public static long? Min<TSource>(this IEnumerable<TSource> source, Func<TSource, long?> selector)
         {
-            if (source == null) { throw Exceptions.ArgumentNull(Parameter.Source); }
-            if (selector == null) { throw Exceptions.ArgumentNull(Parameter.Selector); }
-
-            long? minimum = new long?();
-            using (IEnumerator<TSource> enumerator = source.GetEnumerator())
-            {
-                while (enumerator.MoveNext())
-                {
-                    long? item = selector(enumerator.Current);
-                    if (item.HasValue)
-                    {
-                        minimum = item;
-                        break;
-                    }
-                }
-
-                if (minimum.HasValue)
-                {
-                    while (enumerator.MoveNext())
-                    {
-                        long? item = selector(enumerator.Current);
-                        if (item.HasValue && item.Value < minimum.Value) { minimum = item; }
-                    }
-                }
-            }
-
-            return minimum;
+            return Min(source.Select(selector));
         }
 
         /// <summary>
@@ -2357,41 +2201,7 @@ namespace System.Linq
         /// <exception cref="System.ArgumentNullException">source or selector is null.</exception>
         public static float? Min<TSource>(this IEnumerable<TSource> source, Func<TSource, float?> selector)
         {
-            if (source == null) { throw Exceptions.ArgumentNull(Parameter.Source); }
-            if (selector == null) { throw Exceptions.ArgumentNull(Parameter.Selector); }
-
-            float? minimum = new float?();
-            using (IEnumerator<TSource> enumerator = source.GetEnumerator())
-            {
-                while (enumerator.MoveNext())
-                {
-                    float? item = selector(enumerator.Current);
-                    if (item.HasValue)
-                    {
-                        minimum = item;
-                        break;
-                    }
-                }
-
-                if (minimum.HasValue)
-                {
-                    while (enumerator.MoveNext())
-                    {
-                        float? item = selector(enumerator.Current);
-                        if (item.HasValue)
-                        {
-                            if (float.IsNaN(item.Value)) 
-                            {
-                                minimum = item;
-                                break;
-                            }
-                            else if ((double)item.Value < (double)minimum.Value) { minimum = item; }
-                        }
-                    }
-                }
-            }
-
-            return minimum;
+            return Min(source.Select(selector));
         }
 
         /// <summary>
@@ -2404,41 +2214,7 @@ namespace System.Linq
         /// <exception cref="System.ArgumentNullException">source or selector is null.</exception>
         public static double? Min<TSource>(this IEnumerable<TSource> source, Func<TSource, double?> selector)
         {
-            if (source == null) { throw Exceptions.ArgumentNull(Parameter.Source); }
-            if (selector == null) { throw Exceptions.ArgumentNull(Parameter.Selector); }
-
-            double? minimum = new double?();
-            using (IEnumerator<TSource> enumerator = source.GetEnumerator())
-            {
-                while (enumerator.MoveNext())
-                {
-                    double? item = selector(enumerator.Current);
-                    if (item.HasValue)
-                    {
-                        minimum = item;
-                        break;
-                    }
-                }
-
-                if (minimum.HasValue)
-                {
-                    while (enumerator.MoveNext())
-                    {
-                        double? item = selector(enumerator.Current);
-                        if (item.HasValue)
-                        {
-                            if (double.IsNaN(item.Value)) 
-                            {
-                                minimum = item;
-                                break;
-                            }
-                            else if (item.Value < minimum.Value) { minimum = item; }
-                        }
-                    }
-                }
-            }
-
-            return minimum;
+            return Min(source.Select(selector));
         }
 
         /// <summary>
@@ -2451,33 +2227,7 @@ namespace System.Linq
         /// <exception cref="System.ArgumentNullException">source or selector is null.</exception>
         public static decimal? Min<TSource>(this IEnumerable<TSource> source, Func<TSource, decimal?> selector)
         {
-            if (source == null) { throw Exceptions.ArgumentNull(Parameter.Source); }
-            if (selector == null) { throw Exceptions.ArgumentNull(Parameter.Selector); }
-
-            decimal? minimum = new decimal?();
-            using (IEnumerator<TSource> enumerator = source.GetEnumerator())
-            {
-                while (enumerator.MoveNext())
-                {
-                    decimal? item = selector(enumerator.Current);
-                    if (item.HasValue)
-                    {
-                        minimum = item;
-                        break;
-                    }
-                }
-
-                if (minimum.HasValue)
-                {
-                    while (enumerator.MoveNext())
-                    {
-                        decimal? item = selector(enumerator.Current);
-                        if (item.HasValue && item.Value < minimum.Value) { minimum = item; }
-                    }
-                }
-            }
-
-            return minimum;
+            return Min(source.Select(selector));
         }
 
         /// <summary>
@@ -2491,42 +2241,7 @@ namespace System.Linq
         /// <exception cref="System.ArgumentNullException">source or selector is null.</exception>
         public static TResult Min<TSource, TResult>(this IEnumerable<TSource> source, Func<TSource, TResult> selector)
         {
-            if (source == null) { throw Exceptions.ArgumentNull(Parameter.Source); }
-            if (selector == null) { throw Exceptions.ArgumentNull(Parameter.Selector); }
-
-            Comparer<TResult> comparer = Comparer<TResult>.Default;
-            TResult min = default(TResult);
-
-            if (min == null)
-            {
-                foreach (TSource item in source)
-                {
-                    TResult selectedItem = selector(item);
-
-                    if (selectedItem == null) { continue; }
-                    if (min == null || comparer.Compare(selectedItem, min) < 0) { min = selectedItem; }
-                }
-            }
-            else
-            {
-                using (IEnumerator<TSource> enumerator = source.GetEnumerator())
-                {
-                    bool has = enumerator.MoveNext();
-
-                    if (!has) { throw Exceptions.NoElements(); }
-
-                    min = selector(enumerator.Current);
-
-                    while (enumerator.MoveNext())
-                    {
-                        TResult selectedItem = selector(enumerator.Current);
-
-                        if (comparer.Compare(selectedItem, min) < 0) { min = selectedItem; }
-                    }
-                }
-            }
-
-            return min;
+            return Min(source.Select(selector));
         }
 
         #endregion Min Overloads
