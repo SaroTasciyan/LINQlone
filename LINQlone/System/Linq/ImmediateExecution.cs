@@ -1071,22 +1071,7 @@ namespace System.Linq
         /// <exception cref="System.OverflowException">The sum is larger than System.Decimal.MaxValue.</exception>
         public static decimal? Sum<TSource>(this IEnumerable<TSource> source, Func<TSource, decimal?> selector)
         {
-            if (source == null) { throw Exceptions.ArgumentNull(Parameter.Source); }
-            if (selector == null) { throw Exceptions.ArgumentNull(Parameter.Selector); }
-            
-            decimal sum = 0;
-
-            foreach (TSource item in source)
-            {
-                decimal? selectedNullableValue = selector(item);
-
-                if (selectedNullableValue.HasValue)
-                {
-                    checked { sum += selectedNullableValue.Value; }
-                }
-            }
-
-            return sum;
+            return Sum(source.Select(selector));
         }
 
         /// <summary>
@@ -1100,17 +1085,7 @@ namespace System.Linq
         /// <exception cref="System.OverflowException">The sum is larger than System.Decimal.MaxValue.</exception>
         public static decimal Sum<TSource>(this IEnumerable<TSource> source, Func<TSource, decimal> selector)
         {
-            if (source == null) { throw Exceptions.ArgumentNull(Parameter.Source); }
-            if (selector == null) { throw Exceptions.ArgumentNull(Parameter.Selector); }
-
-            decimal sum = 0;
-
-            foreach (TSource item in source) 
-            { 
-                checked { sum += selector(item); } 
-            }
-
-            return sum;
+            return Sum(source.Select(selector));
         }
 
         /// <summary>
@@ -1123,19 +1098,7 @@ namespace System.Linq
         /// <exception cref="System.ArgumentNullException">source or selector is null.</exception>
         public static double? Sum<TSource>(this IEnumerable<TSource> source, Func<TSource, double?> selector)
         {
-            if (source == null) { throw Exceptions.ArgumentNull(Parameter.Source); }
-            if (selector == null) { throw Exceptions.ArgumentNull(Parameter.Selector); }
-
-            double sum = 0;
-
-            foreach (TSource item in source) 
-            {
-                double? selectedNullableValue = selector(item);
-
-                if (selectedNullableValue.HasValue) { sum += selectedNullableValue.Value; }
-            }
-
-            return sum;
+            return Sum(source.Select(selector));
         }
 
         /// <summary>
@@ -1148,17 +1111,7 @@ namespace System.Linq
         /// <exception cref="System.ArgumentNullException">source or selector is null.</exception>
         public static double Sum<TSource>(this IEnumerable<TSource> source, Func<TSource, double> selector)
         {
-            if (source == null) { throw Exceptions.ArgumentNull(Parameter.Source); }
-            if (selector == null) { throw Exceptions.ArgumentNull(Parameter.Selector); }
-
-            double sum = 0;
-
-            foreach (TSource item in source) 
-            {
-                sum += selector(item);
-            }
-
-            return sum;
+            return Sum(source.Select(selector));
         }
 
         /// <summary>
@@ -1171,19 +1124,7 @@ namespace System.Linq
         /// <exception cref="System.ArgumentNullException">source or selector is null.</exception>
         public static float? Sum<TSource>(this IEnumerable<TSource> source, Func<TSource, float?> selector)
         {
-            if (source == null) { throw Exceptions.ArgumentNull(Parameter.Source); }
-            if (selector == null) { throw Exceptions.ArgumentNull(Parameter.Selector); }
-
-            double sum = 0;
-
-            foreach (TSource item in source)
-            {
-                float? selectedNullableValue = selector(item);
-
-                if (selectedNullableValue.HasValue) { sum += (double)selectedNullableValue.Value; }
-            }
-
-            return (float)sum;
+            return Sum(source.Select(selector));
         }
 
         /// <summary>
@@ -1196,17 +1137,7 @@ namespace System.Linq
         /// <exception cref="System.ArgumentNullException">source or selector is null.</exception>
         public static float Sum<TSource>(this IEnumerable<TSource> source, Func<TSource, float> selector)
         {
-            if (source == null) { throw Exceptions.ArgumentNull(Parameter.Source); }
-            if (selector == null) { throw Exceptions.ArgumentNull(Parameter.Selector); }
-
-            double sum = 0;
-
-            foreach (TSource item in source) 
-            {
-                sum += (double)selector(item);
-            }
-
-            return (float)sum;
+            return Sum(source.Select(selector));
         }
 
         /// <summary>
@@ -1220,19 +1151,7 @@ namespace System.Linq
         /// <exception cref="System.OverflowException">The sum is larger than System.Int32.MaxValue.</exception>
         public static int? Sum<TSource>(this IEnumerable<TSource> source, Func<TSource, int?> selector)
         {
-            if (source == null) { throw Exceptions.ArgumentNull(Parameter.Source); }
-            if (selector == null) { throw Exceptions.ArgumentNull(Parameter.Selector); }
-
-            int sum = 0;
-
-            foreach (TSource item in source)
-            {
-                int? selectedNullableValue = selector(item);
-
-                if (selectedNullableValue.HasValue) { checked { sum += selectedNullableValue.Value; } }
-            }
-
-            return sum;
+            return Sum(source.Select(selector));
         }
 
         /// <summary>
@@ -1246,17 +1165,7 @@ namespace System.Linq
         /// <exception cref="System.OverflowException">The sum is larger than System.Int32.MaxValue.</exception>
         public static int Sum<TSource>(this IEnumerable<TSource> source, Func<TSource, int> selector) 
         {
-            if (source == null) { throw Exceptions.ArgumentNull(Parameter.Source); }
-            if (selector == null) { throw Exceptions.ArgumentNull(Parameter.Selector); }
-
-            int sum = 0;
-
-            foreach (TSource item in source) 
-            {
-                checked { sum += selector(item); } 
-            }
-
-            return sum;
+            return Sum(source.Select(selector));
         }
 
         /// <summary>
@@ -1270,19 +1179,7 @@ namespace System.Linq
         /// <exception cref="System.OverflowException">The sum is larger than System.Int64.MaxValue.</exception>
         public static long? Sum<TSource>(this IEnumerable<TSource> source, Func<TSource, long?> selector)
         {
-            if (source == null) { throw Exceptions.ArgumentNull(Parameter.Source); }
-            if (selector == null) { throw Exceptions.ArgumentNull(Parameter.Selector); }
-
-            long sum = 0;
-
-            foreach (TSource item in source)
-            {
-                long? selectedNullableValue = selector(item);
-
-                if (selectedNullableValue.HasValue) { checked { sum += selectedNullableValue.Value; } }
-            }
-
-            return sum;
+            return Sum(source.Select(selector));
         }
 
         /// <summary>
@@ -1296,17 +1193,7 @@ namespace System.Linq
         /// <exception cref="System.OverflowException">The sum is larger than System.Int64.MaxValue.</exception>
         public static long Sum<TSource>(this IEnumerable<TSource> source, Func<TSource, long> selector)
         {
-            if (source == null) { throw Exceptions.ArgumentNull(Parameter.Source); }
-            if (selector == null) { throw Exceptions.ArgumentNull(Parameter.Selector); }
-
-            long sum = 0;
-
-            foreach (TSource item in source) 
-            { 
-                checked { sum += selector(item); } 
-            }
-
-            return sum;
+            return Sum(source.Select(selector));
         }
 
         #endregion Sum Overloads
