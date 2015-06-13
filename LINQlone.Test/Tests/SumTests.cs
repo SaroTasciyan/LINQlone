@@ -39,13 +39,13 @@ namespace LINQlone.Test
         [Test]
         public void SumIntNonEmptySource()
         {
-            Assert.That(Data<int>(1, 2, 3, 4, 5).Sum(), Is.EqualTo(15));
+            Assert.That(Data(1, 2, 3, 4, 5).Sum(), Is.EqualTo(15));
         }
 
         [Test]
         public void SumIntOverflow()
         {
-            Assert.Throws<OverflowException>(() => Data<int>(Int32.MaxValue, 1).Sum());
+            Assert.Throws<OverflowException>(() => Data(Int32.MaxValue, 1).Sum());
         }
 
         [Test]
@@ -75,13 +75,13 @@ namespace LINQlone.Test
         [Test]
         public void SumFloatMaxValues()
         {
-            Assert.That(Data<float>(Single.MaxValue, Single.MaxValue).Sum(), Is.EqualTo(Single.PositiveInfinity));
+            Assert.That(Data(Single.MaxValue, Single.MaxValue).Sum(), Is.EqualTo(Single.PositiveInfinity));
         }
 
         [Test]
         public void SumFloatNoOverflow()
         {
-            Assert.That(Data<float>(Single.MaxValue, 1).Sum(), Is.EqualTo(3.40282347E+38F));
+            Assert.That(Data(Single.MaxValue, 1).Sum(), Is.EqualTo(3.40282347E+38F));
         }
 
         [Test]
@@ -111,7 +111,7 @@ namespace LINQlone.Test
         [Test]
         public void SumDoubleNoOverflow()
         {
-            Assert.That(Data<double>(Double.MaxValue, 1).Sum(), Is.EqualTo(1.7976931348623157E+308D));
+            Assert.That(Data(Double.MaxValue, 1).Sum(), Is.EqualTo(1.7976931348623157E+308D));
         }
 
         [Test]
@@ -141,7 +141,7 @@ namespace LINQlone.Test
         [Test]
         public void SumLongOverflow()
         {
-            Assert.Throws<OverflowException>(() => Data<long>(Int64.MaxValue, 1).Sum());
+            Assert.Throws<OverflowException>(() => Data(Int64.MaxValue, 1).Sum());
         }
 
         [Test]
@@ -171,7 +171,7 @@ namespace LINQlone.Test
         [Test]
         public void SumDecimalOverflow()
         {
-            Assert.Throws<OverflowException>(() => Data<decimal>(Decimal.MaxValue, 1).Sum());
+            Assert.Throws<OverflowException>(() => Data(Decimal.MaxValue, 1).Sum());
         }
 
         [Test]
@@ -351,13 +351,13 @@ namespace LINQlone.Test
         [Test]
         public void SumIntWithSelectorNonEmptySource()
         {
-            Assert.That(Data<int>(1, 2, 3, 4, 5).Sum(x => x * 2), Is.EqualTo(30));
+            Assert.That(Data(1, 2, 3, 4, 5).Sum(x => x * 2), Is.EqualTo(30));
         }
 
         [Test]
         public void SumIntWithSelectorOverflow()
         {
-            Assert.Throws<OverflowException>(() => Data<int>(Int32.MaxValue, 1).Sum(x => x));
+            Assert.Throws<OverflowException>(() => Data(Int32.MaxValue, 1).Sum(x => x));
         }
 
         [Test]
@@ -393,13 +393,13 @@ namespace LINQlone.Test
         [Test]
         public void SumFloatWithSelectorMaxValues()
         {
-            Assert.That(Data<float>(Single.MaxValue, Single.MaxValue).Sum(x => x), Is.EqualTo(Single.PositiveInfinity));
+            Assert.That(Data(Single.MaxValue, Single.MaxValue).Sum(x => x), Is.EqualTo(Single.PositiveInfinity));
         }
 
         [Test]
         public void SumFloatWithSelectorNoOverflow()
         {
-            Assert.That(Data<float>(Single.MaxValue, 1).Sum(x => x), Is.EqualTo(3.40282347E+38F));
+            Assert.That(Data(Single.MaxValue, 1).Sum(x => x), Is.EqualTo(3.40282347E+38F));
         }
 
         [Test]
@@ -435,7 +435,7 @@ namespace LINQlone.Test
         [Test]
         public void SumDoubleWithSelectorNoOverflow()
         {
-            Assert.That(Data<double>(Double.MaxValue, 1).Sum(x => x), Is.EqualTo(1.7976931348623157E+308D));
+            Assert.That(Data(Double.MaxValue, 1).Sum(x => x), Is.EqualTo(1.7976931348623157E+308D));
         }
 
         [Test]
@@ -471,7 +471,7 @@ namespace LINQlone.Test
         [Test]
         public void SumLongWithSelectorOverflow()
         {
-            Assert.Throws<OverflowException>(() => Data<long>(Int64.MaxValue, 1).Sum(x => x));
+            Assert.Throws<OverflowException>(() => Data(Int64.MaxValue, 1).Sum(x => x));
         }
 
         [Test]
@@ -507,7 +507,7 @@ namespace LINQlone.Test
         [Test]
         public void SumDecimalWithSelectorOverflow()
         {
-            Assert.Throws<OverflowException>(() => Data<decimal>(Decimal.MaxValue, 1).Sum(x => x));
+            Assert.Throws<OverflowException>(() => Data(Decimal.MaxValue, 1).Sum(x => x));
         }
 
         [Test]

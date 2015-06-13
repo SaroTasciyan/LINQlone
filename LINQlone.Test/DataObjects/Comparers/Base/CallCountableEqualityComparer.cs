@@ -44,12 +44,6 @@ namespace LINQlone.Test.DataObjects
 
         #endregion ENDOF: Properties
 
-        #region Constructors
-
-        protected CallCountableEqualityComparer() { }
-
-        #endregion ENDOF: Constructors
-
         #region IEqualityComparer<T> Members
 
         public bool Equals(T x, T y)

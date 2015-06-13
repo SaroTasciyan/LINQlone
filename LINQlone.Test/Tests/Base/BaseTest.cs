@@ -33,12 +33,7 @@ namespace LINQlone.Test
         private List<Data> mDataEnumerables;
         private List<Data> DataEnumerables
         {
-            get
-            {
-                if (mDataEnumerables == null) { mDataEnumerables = new List<Data>(); }
-
-                return mDataEnumerables;
-            }
+            get { return mDataEnumerables ?? (mDataEnumerables = new List<Data>()); }
         }
 
         #endregion ENDOF: DataEnumerables
@@ -128,7 +123,7 @@ namespace LINQlone.Test
             Assert.That(source, Is.Not.Null);
 
             Data<T> dataEnumerable = new Data<T>(source);
-            DataEnumerables.Add((Data)dataEnumerable);
+            DataEnumerables.Add(dataEnumerable);
 
             return dataEnumerable;
         }
@@ -138,7 +133,7 @@ namespace LINQlone.Test
             Assert.That(source, Is.Not.Null);
 
             ListData<T> dataEnumerable = new ListData<T>(new List<T>(source));
-            DataEnumerables.Add((Data)dataEnumerable);
+            DataEnumerables.Add(dataEnumerable);
 
             return dataEnumerable;
         }
@@ -146,7 +141,7 @@ namespace LINQlone.Test
         protected ThrowingData ThrowingData()
         {
             ThrowingData throwingData = new ThrowingData();
-            DataEnumerables.Add((Data)throwingData);
+            DataEnumerables.Add(throwingData);
 
             return throwingData;
         }
@@ -155,7 +150,7 @@ namespace LINQlone.Test
         {
             object[] data = new object[] { "Late", "Throwing", "Data" };
             LateThrowingData<object> dataEnumerable = new LateThrowingData<object>(data);
-            DataEnumerables.Add((Data)dataEnumerable);
+            DataEnumerables.Add(dataEnumerable);
 
             return dataEnumerable;
         }

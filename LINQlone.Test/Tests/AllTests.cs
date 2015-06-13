@@ -72,7 +72,7 @@ namespace LINQlone.Test
         [Test]
         public void AllPredicateArgumentNull()
         {
-            Assert.Throws<ArgumentNullException>(() => DummyData.All((Func<object, bool>)null)).WithParameter("predicate");
+            Assert.Throws<ArgumentNullException>(() => DummyData.All(null)).WithParameter("predicate");
         }
 
         #endregion ENDOF: All

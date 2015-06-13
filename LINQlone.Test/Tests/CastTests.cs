@@ -43,7 +43,7 @@ namespace LINQlone.Test
         [Test]
         public void CastStreamingExecution()
         {
-            IEnumerable<object> enumerable = LateThrowingData().Cast<object>();
+            IEnumerable<string> enumerable = LateThrowingData().Cast<string>();
 
             Assert.DoesNotThrow(() => enumerable.MoveNext()); // # LateThrownException was not thrown since sequence was not fully enumerated
         }
@@ -51,7 +51,7 @@ namespace LINQlone.Test
         [Test]
         public void CastEmptySource()
         {
-            EmptyData.Cast<object>().AssertEmpty();
+            EmptyData.Cast<string>().AssertEmpty();
         }
 
         [Test]
@@ -79,21 +79,31 @@ namespace LINQlone.Test
         }
 
         [Test]
+        public void CastSameTypeOptimization()
+        {
+            Data<object> data = DummyData;
+
+            data.Cast<object>(); // # Not redundant; casting to same type in order to assert data is not enumerated
+            
+            Assert.That(data.IsEnumerated, Is.False);
+        }
+
+        [Test]
         public void CastQueryReuse()
         {
             List<int> data = new List<int> { 1, 2 };
             IEnumerable<object> enumerable = data.Cast<object>();
 
-            enumerable.AssertEqual<object>(1, 2);
+            enumerable.AssertEqual(1, 2);
 
             data.Add(3);
-            enumerable.AssertEqual<object>(1, 2, 3);
+            enumerable.AssertEqual(1, 2, 3);
         }
 
         [Test]
         public void CastSourceArgumentNull()
         {
-            Assert.Throws<ArgumentNullException>(() => NullData.Cast<object>()).WithParameter("source");
+            Assert.Throws<ArgumentNullException>(() => NullData.Cast<string>()).WithParameter("source");
         }
 
         [Test]

@@ -97,7 +97,7 @@ namespace LINQlone.Test
         [Test]
         public void LastWithPredicatePredicateArgumentNull()
         {
-            Assert.Throws<ArgumentNullException>(() => DummyData.Last((Func<object, bool>)null)).WithParameter("predicate");
+            Assert.Throws<ArgumentNullException>(() => DummyData.Last(null)).WithParameter("predicate");
         }
 
         #endregion ENDOF: Last With Predicate

@@ -165,8 +165,8 @@ namespace LINQlone.Test
         [Test]
         public void UnionWithComparerEqualsIsCalledForRepeatingNullValue()
         {
-            Data<string> first = Data<string>(null, "a", "b");
-            Data<string> second = Data<string>("b", "c", null);
+            Data<string> first = Data(null, "a", "b");
+            Data<string> second = Data("b", "c", null);
             ThrowingStringEqualityComparer comparer = new ThrowingStringEqualityComparer();
 
             Assert.Throws<NullReferenceException>(() => first.Union(second, comparer).Iterate());

@@ -39,7 +39,7 @@ namespace LINQlone.Test
         [Test]
         public void MaxIntNonEmptySource()
         {
-            Assert.That(Data<int>(2, 1, 4, 3).Max(), Is.EqualTo(4));
+            Assert.That(Data(2, 1, 4, 3).Max(), Is.EqualTo(4));
         }
 
         [Test]
@@ -69,7 +69,7 @@ namespace LINQlone.Test
         [Test]
         public void MaxFloatWithNan()
         {
-            Assert.That(Data<float>(Single.NaN, 2, 1, 4, 3, Single.NaN).Max(), Is.EqualTo(4));
+            Assert.That(Data(Single.NaN, 2, 1, 4, 3, Single.NaN).Max(), Is.EqualTo(4));
         }
 
         [Test]
@@ -99,7 +99,7 @@ namespace LINQlone.Test
         [Test]
         public void MaxDoubleWithNan()
         {
-            Assert.That(Data<double>(Double.NaN, 2, 1, 4, 3, Double.NaN).Max(), Is.EqualTo(4));
+            Assert.That(Data(Double.NaN, 2, 1, 4, 3, Double.NaN).Max(), Is.EqualTo(4));
         }
 
         [Test]
@@ -303,7 +303,7 @@ namespace LINQlone.Test
         [Test]
         public void MaxIntWithSelectorNonEmptySource()
         {
-            Assert.That(Data<int>(2, 1, 4, 3).Max(x => x * 2), Is.EqualTo(8));
+            Assert.That(Data(2, 1, 4, 3).Max(x => x * 2), Is.EqualTo(8));
         }
 
         [Test]
@@ -339,7 +339,7 @@ namespace LINQlone.Test
         [Test]
         public void MaxFloatWithSelectorWithNan()
         {
-            Assert.That(Data<float>(Single.NaN, 2, 1, 4, 3, Single.NaN).Max(x => x * 2), Is.EqualTo(8));
+            Assert.That(Data(Single.NaN, 2, 1, 4, 3, Single.NaN).Max(x => x * 2), Is.EqualTo(8));
         }
 
         [Test]
@@ -375,7 +375,7 @@ namespace LINQlone.Test
         [Test]
         public void MaxDoubleWithSelectorWithNan()
         {
-            Assert.That(Data<double>(Double.NaN, 2, 1, 4, 3, Double.NaN).Max(x => x * 2), Is.EqualTo(8));
+            Assert.That(Data(Double.NaN, 2, 1, 4, 3, Double.NaN).Max(x => x * 2), Is.EqualTo(8));
         }
 
         [Test]
@@ -633,13 +633,13 @@ namespace LINQlone.Test
         [Test]
         public void MaxGenericValueNonEmptySource()
         {
-            Assert.That(Data<int>(2, 1, 4, 3).Max<int>(), Is.EqualTo(4));
+            Assert.That(Data(2, 1, 4, 3).Max<int>(), Is.EqualTo(4));
         }
 
         [Test]
         public void MaxGenericReferenceNonEmptySource()
         {
-            Assert.That(Data<string>(null, "b", "a", "d", "c", null).Max(), Is.EqualTo("d"));
+            Assert.That(Data(null, "b", "a", "d", "c", null).Max(), Is.EqualTo("d"));
         }
 
         [Test]
@@ -669,19 +669,19 @@ namespace LINQlone.Test
         [Test]
         public void MaxGenericWithSelectorValueNonEmptySource()
         {
-            Assert.That(Data<int>(2, 1, 4, 3).Max<int, int>(x => x * 2), Is.EqualTo(8));
+            Assert.That(Data(2, 1, 4, 3).Max<int, int>(x => x * 2), Is.EqualTo(8));
         }
 
         [Test]
         public void MaxGenericWithSelectorReferenceNonEmptySource()
         {
-            Assert.That(Data<string>("b", "a", "d", "c").Max(x => String.Format("{0}?", x)), Is.EqualTo("d?"));
+            Assert.That(Data("b", "a", "d", "c").Max(x => String.Format("{0}?", x)), Is.EqualTo("d?"));
         }
 
         [Test]
         public void MaxGenericWithSelectorReferenceNonEmptyWithNullSource()
         {
-            Assert.That(Data<string>(null, "b", "a", "d", "c", null).Max(x => x), Is.EqualTo("d"));
+            Assert.That(Data(null, "b", "a", "d", "c", null).Max(x => x), Is.EqualTo("d"));
         }
 
         [Test]

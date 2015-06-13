@@ -64,9 +64,9 @@ namespace LINQlone.Test
             Country china, india, unknown;
             Data<Country> data = Data
             (
-                china = new Country() { Name = "China", Continent = "Asia" },
-                india = new Country() { Name = "India", Continent = "Asia" },
-                unknown = new Country() { Name = "Unknown", Continent = null }
+                china = new Country { Name = "China", Continent = "Asia" },
+                india = new Country { Name = "India", Continent = "Asia" },
+                unknown = new Country { Name = "Unknown", Continent = null }
             );
 
             ILookup<string, Country> continentLookup = data.ToLookup(x => x.Continent);
@@ -91,8 +91,8 @@ namespace LINQlone.Test
             Country china, india, @null;
             Data<Country> data = Data
             (
-                china = new Country() { Name = "China", Continent = "Asia" },
-                india = new Country() { Name = "India", Continent = "Asia" },
+                china = new Country { Name = "China", Continent = "Asia" },
+                india = new Country { Name = "India", Continent = "Asia" },
                 @null = null
             );
 
@@ -164,9 +164,9 @@ namespace LINQlone.Test
         {
             Data<Country> data = Data
             (
-                new Country() { Name = "China", Continent = "Asia" },
-                new Country() { Name = "India", Continent = "Asia" },
-                new Country() { Name = "Unknown", Continent = null }
+                new Country { Name = "China", Continent = "Asia" },
+                new Country { Name = "India", Continent = "Asia" },
+                new Country { Name = "Unknown", Continent = null }
             );
 
             ILookup<string, string> continentLookup = data.ToLookup(k => k.Continent, e => e.Name);
@@ -191,8 +191,8 @@ namespace LINQlone.Test
             Country china, india, @null;
             Data<Country> data = Data
             (
-                china = new Country() { Name = "China", Continent = "Asia" },
-                india = new Country() { Name = "India", Continent = "Asia" },
+                china = new Country { Name = "China", Continent = "Asia" },
+                india = new Country { Name = "India", Continent = "Asia" },
                 @null = null
             );
 
@@ -271,9 +271,9 @@ namespace LINQlone.Test
             Country china, india, unknown;
             Data<Country> data = Data
             (
-                china = new Country() { Name = "China", Continent = "Asia" },
-                india = new Country() { Name = "India", Continent = "Asia" },
-                unknown = new Country() { Name = "Unknown", Continent = null }
+                china = new Country { Name = "China", Continent = "Asia" },
+                india = new Country { Name = "India", Continent = "Asia" },
+                unknown = new Country { Name = "Unknown", Continent = null }
             );
 
             ILookup<string, Country> continentLookup = data.ToLookup(x => x.Continent, EqualityComparer<string>.Default);
@@ -298,8 +298,8 @@ namespace LINQlone.Test
             Country china, india, @null;
             Data<Country> data = Data
             (
-                china = new Country() { Name = "China", Continent = "Asia" },
-                india = new Country() { Name = "India", Continent = "Asia" },
+                china = new Country { Name = "China", Continent = "Asia" },
+                india = new Country { Name = "India", Continent = "Asia" },
                 @null = null
             );
 
@@ -328,9 +328,9 @@ namespace LINQlone.Test
         {
             Data<Country> data = Data
             (
-                new Country() { Name = "China", Continent = "Asia" },
-                new Country() { Name = "Unknown1", Continent = null },
-                new Country() { Name = "Unknown2", Continent = null }
+                new Country { Name = "China", Continent = "Asia" },
+                new Country { Name = "Unknown1", Continent = null },
+                new Country { Name = "Unknown2", Continent = null }
             );
             ThrowingStringEqualityComparer comparer = new ThrowingStringEqualityComparer();
 
@@ -352,7 +352,7 @@ namespace LINQlone.Test
         [Test]
         public void ToLookupWithComparerKeySelectorArgumentNull()
         {
-            Assert.Throws<ArgumentNullException>(() => DummyData.ToLookup((Func<object, object>)null, EqualityComparer<object>.Default)).WithParameter("keySelector");
+            Assert.Throws<ArgumentNullException>(() => DummyData.ToLookup(null, EqualityComparer<object>.Default)).WithParameter("keySelector");
         }
 
         #endregion ENDOF: ToLookup With Comparer
@@ -391,9 +391,9 @@ namespace LINQlone.Test
         {
             Data<Country> data = Data
             (
-                new Country() { Name = "China", Continent = "Asia" },
-                new Country() { Name = "India", Continent = "Asia" },
-                new Country() { Name = "Unknown", Continent = null }
+                new Country { Name = "China", Continent = "Asia" },
+                new Country { Name = "India", Continent = "Asia" },
+                new Country { Name = "Unknown", Continent = null }
             );
 
             ILookup<string, string> continentLookup = data.ToLookup(k => k.Continent, e => e.Name, EqualityComparer<string>.Default);
@@ -418,8 +418,8 @@ namespace LINQlone.Test
             Country china, india, @null;
             Data<Country> data = Data
             (
-                china = new Country() { Name = "China", Continent = "Asia" },
-                india = new Country() { Name = "India", Continent = "Asia" },
+                china = new Country { Name = "China", Continent = "Asia" },
+                india = new Country { Name = "India", Continent = "Asia" },
                 @null = null
             );
 
@@ -448,9 +448,9 @@ namespace LINQlone.Test
         {
             Data<Country> data = Data
             (
-                new Country() { Name = "China", Continent = "Asia" },
-                new Country() { Name = "Unknown1", Continent = null },
-                new Country() { Name = "Unknown2", Continent = null }
+                new Country { Name = "China", Continent = "Asia" },
+                new Country { Name = "Unknown1", Continent = null },
+                new Country { Name = "Unknown2", Continent = null }
             );
             ThrowingStringEqualityComparer comparer = new ThrowingStringEqualityComparer();
 
@@ -472,7 +472,7 @@ namespace LINQlone.Test
         [Test]
         public void ToLookupWithElementSelectorComparerKeySelectorArgumentNull()
         {
-            Assert.Throws<ArgumentNullException>(() => DummyData.ToLookup((Func<object, object>)null, e => e, EqualityComparer<object>.Default)).WithParameter("keySelector");
+            Assert.Throws<ArgumentNullException>(() => DummyData.ToLookup(null, e => e, EqualityComparer<object>.Default)).WithParameter("keySelector");
         }
 
         [Test]

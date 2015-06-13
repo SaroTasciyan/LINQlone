@@ -39,13 +39,13 @@ namespace LINQlone.Test
         [Test]
         public void AverageIntNonEmptySource()
         {
-            Assert.That(Data<int>(1, 2, 3, 4).Average(), Is.EqualTo(2.5D));
+            Assert.That(Data(1, 2, 3, 4).Average(), Is.EqualTo(2.5D));
         }
 
         [Test]
         public void AverageIntNoOverflow()
         {
-            Assert.That(Data<int>(Int32.MaxValue, 1).Average(), Is.EqualTo(1073741824.0D));
+            Assert.That(Data(Int32.MaxValue, 1).Average(), Is.EqualTo(1073741824.0D));
         }
 
         [Test]
@@ -75,19 +75,19 @@ namespace LINQlone.Test
         [Test]
         public void AverageFloatMaxValues()
         {
-            Assert.That(Data<float>(Single.MaxValue, Single.MaxValue).Average(), Is.EqualTo(3.40282347E+38F));
+            Assert.That(Data(Single.MaxValue, Single.MaxValue).Average(), Is.EqualTo(3.40282347E+38F));
         }
 
         [Test]
         public void AverageFloatNoOverflow()
         {
-            Assert.That(Data<float>(Single.MaxValue, 1).Average(), Is.EqualTo(1.70141173E+38F));
+            Assert.That(Data(Single.MaxValue, 1).Average(), Is.EqualTo(1.70141173E+38F));
         }
 
         [Test]
         public void AverageFloatWithNan()
         {
-            Assert.That(Data<float>(1, 2, Single.NaN, 3, 4).Average(), Is.EqualTo(Single.NaN));
+            Assert.That(Data(1, 2, Single.NaN, 3, 4).Average(), Is.EqualTo(Single.NaN));
         }
 
         [Test]
@@ -117,13 +117,13 @@ namespace LINQlone.Test
         [Test]
         public void AverageDoubleNoOverflow()
         {
-            Assert.That(Data<double>(Double.MaxValue, 1).Average(), Is.EqualTo(8.9884656743115785E+307D));
+            Assert.That(Data(Double.MaxValue, 1).Average(), Is.EqualTo(8.9884656743115785E+307D));
         }
 
         [Test]
         public void AverageDoubleWithNan()
         {
-            Assert.That(Data<double>(1, 2, Double.NaN, 3, 4).Average(), Is.EqualTo(Double.NaN));
+            Assert.That(Data(1, 2, Double.NaN, 3, 4).Average(), Is.EqualTo(Double.NaN));
         }
 
         [Test]
@@ -153,7 +153,7 @@ namespace LINQlone.Test
         [Test]
         public void AverageLongOverflow()
         {
-            Assert.Throws<OverflowException>(() => Data<long>(Int64.MaxValue, 1).Average());
+            Assert.Throws<OverflowException>(() => Data(Int64.MaxValue, 1).Average());
         }
 
         [Test]
@@ -183,7 +183,7 @@ namespace LINQlone.Test
         [Test]
         public void AverageDecimalOverflow()
         {
-            Assert.Throws<OverflowException>(() => Data<decimal>(Decimal.MaxValue, 1).Average());
+            Assert.Throws<OverflowException>(() => Data(Decimal.MaxValue, 1).Average());
         }
 
         [Test]
@@ -375,13 +375,13 @@ namespace LINQlone.Test
         [Test]
         public void AverageIntWithSelectorNonEmptySource()
         {
-            Assert.That(Data<int>(1, 2, 3, 4).Average(x => x * 2), Is.EqualTo(5));
+            Assert.That(Data(1, 2, 3, 4).Average(x => x * 2), Is.EqualTo(5));
         }
 
         [Test]
         public void AverageIntWithSelectorNoOverflow()
         {
-            Assert.That(Data<int>(Int32.MaxValue, 1).Average(x => x), Is.EqualTo(1073741824.0D));
+            Assert.That(Data(Int32.MaxValue, 1).Average(x => x), Is.EqualTo(1073741824.0D));
         }
 
         [Test]
@@ -417,19 +417,19 @@ namespace LINQlone.Test
         [Test]
         public void AverageFloatWithSelectorMaxValues()
         {
-            Assert.That(Data<float>(Single.MaxValue, Single.MaxValue).Average(x => x), Is.EqualTo(3.40282347E+38F));
+            Assert.That(Data(Single.MaxValue, Single.MaxValue).Average(x => x), Is.EqualTo(3.40282347E+38F));
         }
 
         [Test]
         public void AverageFloatWithSelectorNoOverflow()
         {
-            Assert.That(Data<float>(Single.MaxValue, 1).Average(x => x), Is.EqualTo(1.70141173E+38F));
+            Assert.That(Data(Single.MaxValue, 1).Average(x => x), Is.EqualTo(1.70141173E+38F));
         }
 
         [Test]
         public void AverageFloatWithSelectorWithNan()
         {
-            Assert.That(Data<float>(1, 2, Single.NaN, 3, 4).Average(x => x), Is.EqualTo(Single.NaN));
+            Assert.That(Data(1, 2, Single.NaN, 3, 4).Average(x => x), Is.EqualTo(Single.NaN));
         }
 
         [Test]
@@ -465,13 +465,13 @@ namespace LINQlone.Test
         [Test]
         public void AverageDoubleWithSelectorNoOverflow()
         {
-            Assert.That(Data<double>(Double.MaxValue, 1).Average(x => x), Is.EqualTo(8.9884656743115785E+307D));
+            Assert.That(Data(Double.MaxValue, 1).Average(x => x), Is.EqualTo(8.9884656743115785E+307D));
         }
 
         [Test]
         public void AverageDoubleWithSelectorWithNan()
         {
-            Assert.That(Data<double>(1, 2, Double.NaN, 3, 4).Average(x => x), Is.EqualTo(Double.NaN));
+            Assert.That(Data(1, 2, Double.NaN, 3, 4).Average(x => x), Is.EqualTo(Double.NaN));
         }
 
         [Test]
@@ -507,7 +507,7 @@ namespace LINQlone.Test
         [Test]
         public void AverageLongWithSelectorOverflow()
         {
-            Assert.Throws<OverflowException>(() => Data<long>(Int64.MaxValue, 1).Average(x => x));
+            Assert.Throws<OverflowException>(() => Data(Int64.MaxValue, 1).Average(x => x));
         }
 
         [Test]
@@ -543,7 +543,7 @@ namespace LINQlone.Test
         [Test]
         public void AverageDecimalWithSelectorOverflow()
         {
-            Assert.Throws<OverflowException>(() => Data<decimal>(Decimal.MaxValue, 1).Average(x => x));
+            Assert.Throws<OverflowException>(() => Data(Decimal.MaxValue, 1).Average(x => x));
         }
 
         [Test]
@@ -579,7 +579,7 @@ namespace LINQlone.Test
         [Test]
         public void AverageNullableIntWithSelectorNoOverflow()
         {
-            Assert.That(Data<int>(Int32.MaxValue, 1).Average(x => x), Is.EqualTo(1073741824.0D));
+            Assert.That(Data(Int32.MaxValue, 1).Average(x => x), Is.EqualTo(1073741824.0D));
         }
 
         [Test]

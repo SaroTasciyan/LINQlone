@@ -60,12 +60,11 @@ namespace LINQlone.Test
         [Test]
         public void ToDictionaryNullKey()
         {
-            Country china, france, unknown;
             Data<Country> data = Data
             (
-                china = new Country() { Name = "China", Continent = "Asia" },
-                france = new Country() { Name = "France", Continent = "Europe" },
-                unknown = new Country() { Name = "Unknown", Continent = null }
+                new Country() { Name = "China", Continent = "Asia" },
+                new Country() { Name = "France", Continent = "Europe" },
+                new Country() { Name = "Unknown", Continent = null }
             );
 
             Assert.Throws<ArgumentNullException>(() => data.ToDictionary(x => x.Continent));
@@ -116,12 +115,11 @@ namespace LINQlone.Test
         [Test]
         public void ToDictionaryWithElementSelectorNullKey()
         {
-            Country china, france, unknown;
             Data<Country> data = Data
             (
-                china = new Country() { Name = "China", Continent = "Asia" },
-                france = new Country() { Name = "France", Continent = "Europe" },
-                unknown = new Country() { Name = "Unknown", Continent = null }
+                new Country() { Name = "China", Continent = "Asia" },
+                new Country() { Name = "France", Continent = "Europe" },
+                new Country() { Name = "Unknown", Continent = null }
             );
 
             Assert.Throws<ArgumentNullException>(() => data.ToDictionary(k => k.Continent, e => e.Name));
@@ -178,12 +176,11 @@ namespace LINQlone.Test
         [Test]
         public void ToDictionaryWithComparerNullKey()
         {
-            Country china, france, unknown;
             Data<Country> data = Data
             (
-                china = new Country() { Name = "China", Continent = "Asia" },
-                france = new Country() { Name = "France", Continent = "Europe" },
-                unknown = new Country() { Name = "Unknown", Continent = null }
+                new Country() { Name = "China", Continent = "Asia" },
+                new Country() { Name = "France", Continent = "Europe" },
+                new Country() { Name = "Unknown", Continent = null }
             );
 
             Assert.Throws<ArgumentNullException>(() => data.ToDictionary(x => x.Continent, EqualityComparer<string>.Default));
@@ -204,7 +201,7 @@ namespace LINQlone.Test
         [Test]
         public void ToDictionaryWithComparerKeySelectorArgumentNull()
         {
-            Assert.Throws<ArgumentNullException>(() => DummyData.ToDictionary((Func<object, object>)null, EqualityComparer<object>.Default)).WithParameter("keySelector");
+            Assert.Throws<ArgumentNullException>(() => DummyData.ToDictionary(null, EqualityComparer<object>.Default)).WithParameter("keySelector");
         }
 
         #endregion ENDOF: ToDictionary With Comparer
@@ -240,12 +237,11 @@ namespace LINQlone.Test
         [Test]
         public void ToDictionaryWithElementSelectorComparerNullKey()
         {
-            Country china, france, unknown;
             Data<Country> data = Data
             (
-                china = new Country() { Name = "China", Continent = "Asia" },
-                france = new Country() { Name = "France", Continent = "Europe" },
-                unknown = new Country() { Name = "Unknown", Continent = null }
+                new Country() { Name = "China", Continent = "Asia" },
+                new Country() { Name = "France", Continent = "Europe" },
+                new Country() { Name = "Unknown", Continent = null }
             );
 
             Assert.Throws<ArgumentNullException>(() => data.ToDictionary(k => k.Continent, e => e.Name, EqualityComparer<string>.Default));
@@ -266,7 +262,7 @@ namespace LINQlone.Test
         [Test]
         public void ToDictionaryWithElementSelectorComparerKeySelectorArgumentNull()
         {
-            Assert.Throws<ArgumentNullException>(() => DummyData.ToDictionary((Func<object, object>)null, e => e, EqualityComparer<object>.Default)).WithParameter("keySelector");
+            Assert.Throws<ArgumentNullException>(() => DummyData.ToDictionary(null, e => e, EqualityComparer<object>.Default)).WithParameter("keySelector");
         }
 
         [Test]

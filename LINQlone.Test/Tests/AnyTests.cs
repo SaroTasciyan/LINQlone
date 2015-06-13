@@ -103,7 +103,7 @@ namespace LINQlone.Test
         [Test]
         public void AnyWithPredicatePredicateArgumentNull()
         {
-            Assert.Throws<ArgumentNullException>(() => DummyData.Any((Func<object, bool>)null)).WithParameter("predicate");
+            Assert.Throws<ArgumentNullException>(() => DummyData.Any(null)).WithParameter("predicate");
         }
 
         #endregion ENDOF: Any With Predicate

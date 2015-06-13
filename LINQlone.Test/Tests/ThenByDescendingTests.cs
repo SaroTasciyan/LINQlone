@@ -196,7 +196,7 @@ namespace LINQlone.Test
         [Test]
         public void ThenByDescendingWithComparerKeySelectorArgumentNull()
         {
-            Assert.Throws<ArgumentNullException>(() => DummyData.OrderBy(x => true).ThenByDescending((Func<object, object>)null, Comparer<object>.Default)).WithParameter("keySelector");
+            Assert.Throws<ArgumentNullException>(() => DummyData.OrderBy(x => true).ThenByDescending(null, Comparer<object>.Default)).WithParameter("keySelector");
         }
 
         #endregion ENDOF: ThenByDescending With Comparer

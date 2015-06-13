@@ -43,7 +43,7 @@ namespace LINQlone.Test
         [Test]
         public void DistinctStreamingExecution()
         {
-            IEnumerable<object> enumerable = LateThrowingData().Distinct<object>();
+            IEnumerable<object> enumerable = LateThrowingData().Distinct();
 
             Assert.DoesNotThrow(() => enumerable.MoveNext()); // # LateThrownException was not thrown since sequence was not fully enumerated
         }
@@ -100,7 +100,7 @@ namespace LINQlone.Test
         [Test]
         public void DistinctWithComparerStreamingExecution()
         {
-            IEnumerable<object> enumerable = LateThrowingData().Distinct<object>(EqualityComparer<object>.Default);
+            IEnumerable<object> enumerable = LateThrowingData().Distinct(EqualityComparer<object>.Default);
             
             Assert.DoesNotThrow(() => enumerable.MoveNext()); // # LateThrownException was not thrown since sequence was not fully enumerated
         }

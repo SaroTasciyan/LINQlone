@@ -413,7 +413,7 @@ namespace System.Linq
             // # Sum of start and count value -1 can exceed integer max value and cause an overflow. 
             // # Unchecked overflow causes the value evaluated to be negative and Int32.MaxValue comparison to be wrong.
             // # Checking if LONG range maximum value exceeds integer max value limit; ArgumentOutOfRangeException is thrown instead
-            long rangeMaxValue = (long)start + (long)count - 1L; 
+            long rangeMaxValue = start + (long)count - 1L; 
             if (rangeMaxValue > Int32.MaxValue) { throw Exceptions.ArgumentOutOfRange(Parameter.Count); }
 
             return RangeYielder(start, count);
@@ -1318,11 +1318,10 @@ namespace System.Linq
         private static IEnumerable<TResult> JoinYielder<TOuter, TInner, TKey, TResult>(IEnumerable<TOuter> outer, IEnumerable<TInner> inner, Func<TOuter, TKey> outerKeySelector, Func<TInner, TKey> innerKeySelector, Func<TOuter, TInner, TResult> resultSelector, IEqualityComparer<TKey> comparer)
         {
             ILookup<TKey, TInner> innerLookup = inner.ToLookup(innerKeySelector, comparer);
-
-            TKey key;
+            
             foreach (TOuter outerItem in outer)
             {
-                key = outerKeySelector(outerItem);
+                TKey key = outerKeySelector(outerItem);
 
                 if (key != null) // # Altho it is missing in the documentation (http://msdn.microsoft.com/en-us/library/bb534675.aspx), Join does not support null keys
                 {
@@ -1386,10 +1385,9 @@ namespace System.Linq
         {
             ILookup<TKey, TInner> innerLookup = inner.ToLookup(innerKeySelector, comparer);
 
-            TKey key;
             foreach (TOuter outerItem in outer)
             {
-                key = outerKeySelector(outerItem);
+                TKey key = outerKeySelector(outerItem);
 
                 if (key == null) { yield return resultSelector(outerItem, new TInner[0]); } // # Unlike Join; GroupJoin DOES support null keys, returning empty enumerable instead of matching values
                 else

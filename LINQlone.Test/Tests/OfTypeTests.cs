@@ -43,7 +43,7 @@ namespace LINQlone.Test
         [Test]
         public void OfTypeStreamingExecution()
         {
-            IEnumerable<object> enumerable = LateThrowingData().OfType<object>();
+            IEnumerable<string> enumerable = LateThrowingData().OfType<string>();
 
             Assert.DoesNotThrow(() => enumerable.MoveNext()); // # LateThrownException was not thrown since sequence was not fully enumerated
         }
@@ -51,7 +51,7 @@ namespace LINQlone.Test
         [Test]
         public void OfTypeEmptySource()
         {
-            EmptyData.OfType<object>().AssertEmpty();
+            EmptyData.OfType<string>().AssertEmpty();
         }
 
         [Test]
@@ -90,16 +90,16 @@ namespace LINQlone.Test
             List<int> data = new List<int> { 1, 2 };
             IEnumerable<object> enumerable = data.OfType<object>();
 
-            enumerable.AssertEqual<object>(1, 2);
+            enumerable.AssertEqual(1, 2);
 
             data.Add(3);
-            enumerable.AssertEqual<object>(1, 2, 3);
+            enumerable.AssertEqual(1, 2, 3);
         }
 
         [Test]
         public void OfTypeSourceArgumentNull()
         {
-            Assert.Throws<ArgumentNullException>(() => NullData.OfType<object>()).WithParameter("source");
+            Assert.Throws<ArgumentNullException>(() => NullData.OfType<string>()).WithParameter("source");
         }
 
         #endregion ENDOF: OfType

@@ -25,7 +25,7 @@ namespace LINQlone.Infrastructure
     {
         #region Fields
 
-        private IEnumerable<TSource> mSource;
+        private readonly IEnumerable<TSource> mSource;
         private readonly Func<TSource, TKey> mKeySelector;
 
         #endregion ENDOF: Fields
@@ -45,7 +45,7 @@ namespace LINQlone.Infrastructure
 
         internal override void Sort()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         internal IEnumerator<TSource> DeferredSort()

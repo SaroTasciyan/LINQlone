@@ -16,7 +16,6 @@
 
 #endregion ENDOF: Copyright & License Information
 
-using System.Collections;
 using System.Collections.Generic;
 
 using LINQlone.Definitions;
@@ -897,7 +896,7 @@ namespace System.Linq
 
             foreach (float item in source) 
             { 
-                sum += (double)item; // ~ Unchecked; Result will be evaluted to Infinity instead of overflow
+                sum += item; // ~ Unchecked; Result will be evaluted to Infinity instead of overflow
             }
 
             return (float)sum;
@@ -995,7 +994,7 @@ namespace System.Linq
 
             foreach (float? item in source) 
             {
-                if (item.HasValue) { sum += (double)item.Value; }
+                if (item.HasValue) { sum += item.Value; }
             }
 
             return (float)sum;
@@ -1071,22 +1070,7 @@ namespace System.Linq
         /// <exception cref="System.OverflowException">The sum is larger than System.Decimal.MaxValue.</exception>
         public static decimal? Sum<TSource>(this IEnumerable<TSource> source, Func<TSource, decimal?> selector)
         {
-            if (source == null) { throw Exceptions.ArgumentNull(Parameter.Source); }
-            if (selector == null) { throw Exceptions.ArgumentNull(Parameter.Selector); }
-            
-            decimal sum = 0;
-
-            foreach (TSource item in source)
-            {
-                decimal? selectedNullableValue = selector(item);
-
-                if (selectedNullableValue.HasValue)
-                {
-                    checked { sum += selectedNullableValue.Value; }
-                }
-            }
-
-            return sum;
+            return Sum(source.Select(selector));
         }
 
         /// <summary>
@@ -1100,17 +1084,7 @@ namespace System.Linq
         /// <exception cref="System.OverflowException">The sum is larger than System.Decimal.MaxValue.</exception>
         public static decimal Sum<TSource>(this IEnumerable<TSource> source, Func<TSource, decimal> selector)
         {
-            if (source == null) { throw Exceptions.ArgumentNull(Parameter.Source); }
-            if (selector == null) { throw Exceptions.ArgumentNull(Parameter.Selector); }
-
-            decimal sum = 0;
-
-            foreach (TSource item in source) 
-            { 
-                checked { sum += selector(item); } 
-            }
-
-            return sum;
+            return Sum(source.Select(selector));
         }
 
         /// <summary>
@@ -1123,19 +1097,7 @@ namespace System.Linq
         /// <exception cref="System.ArgumentNullException">source or selector is null.</exception>
         public static double? Sum<TSource>(this IEnumerable<TSource> source, Func<TSource, double?> selector)
         {
-            if (source == null) { throw Exceptions.ArgumentNull(Parameter.Source); }
-            if (selector == null) { throw Exceptions.ArgumentNull(Parameter.Selector); }
-
-            double sum = 0;
-
-            foreach (TSource item in source) 
-            {
-                double? selectedNullableValue = selector(item);
-
-                if (selectedNullableValue.HasValue) { sum += selectedNullableValue.Value; }
-            }
-
-            return sum;
+            return Sum(source.Select(selector));
         }
 
         /// <summary>
@@ -1148,17 +1110,7 @@ namespace System.Linq
         /// <exception cref="System.ArgumentNullException">source or selector is null.</exception>
         public static double Sum<TSource>(this IEnumerable<TSource> source, Func<TSource, double> selector)
         {
-            if (source == null) { throw Exceptions.ArgumentNull(Parameter.Source); }
-            if (selector == null) { throw Exceptions.ArgumentNull(Parameter.Selector); }
-
-            double sum = 0;
-
-            foreach (TSource item in source) 
-            {
-                sum += selector(item);
-            }
-
-            return sum;
+            return Sum(source.Select(selector));
         }
 
         /// <summary>
@@ -1171,19 +1123,7 @@ namespace System.Linq
         /// <exception cref="System.ArgumentNullException">source or selector is null.</exception>
         public static float? Sum<TSource>(this IEnumerable<TSource> source, Func<TSource, float?> selector)
         {
-            if (source == null) { throw Exceptions.ArgumentNull(Parameter.Source); }
-            if (selector == null) { throw Exceptions.ArgumentNull(Parameter.Selector); }
-
-            double sum = 0;
-
-            foreach (TSource item in source)
-            {
-                float? selectedNullableValue = selector(item);
-
-                if (selectedNullableValue.HasValue) { sum += (double)selectedNullableValue.Value; }
-            }
-
-            return (float)sum;
+            return Sum(source.Select(selector));
         }
 
         /// <summary>
@@ -1196,17 +1136,7 @@ namespace System.Linq
         /// <exception cref="System.ArgumentNullException">source or selector is null.</exception>
         public static float Sum<TSource>(this IEnumerable<TSource> source, Func<TSource, float> selector)
         {
-            if (source == null) { throw Exceptions.ArgumentNull(Parameter.Source); }
-            if (selector == null) { throw Exceptions.ArgumentNull(Parameter.Selector); }
-
-            double sum = 0;
-
-            foreach (TSource item in source) 
-            {
-                sum += (double)selector(item);
-            }
-
-            return (float)sum;
+            return Sum(source.Select(selector));
         }
 
         /// <summary>
@@ -1220,19 +1150,7 @@ namespace System.Linq
         /// <exception cref="System.OverflowException">The sum is larger than System.Int32.MaxValue.</exception>
         public static int? Sum<TSource>(this IEnumerable<TSource> source, Func<TSource, int?> selector)
         {
-            if (source == null) { throw Exceptions.ArgumentNull(Parameter.Source); }
-            if (selector == null) { throw Exceptions.ArgumentNull(Parameter.Selector); }
-
-            int sum = 0;
-
-            foreach (TSource item in source)
-            {
-                int? selectedNullableValue = selector(item);
-
-                if (selectedNullableValue.HasValue) { checked { sum += selectedNullableValue.Value; } }
-            }
-
-            return sum;
+            return Sum(source.Select(selector));
         }
 
         /// <summary>
@@ -1246,17 +1164,7 @@ namespace System.Linq
         /// <exception cref="System.OverflowException">The sum is larger than System.Int32.MaxValue.</exception>
         public static int Sum<TSource>(this IEnumerable<TSource> source, Func<TSource, int> selector) 
         {
-            if (source == null) { throw Exceptions.ArgumentNull(Parameter.Source); }
-            if (selector == null) { throw Exceptions.ArgumentNull(Parameter.Selector); }
-
-            int sum = 0;
-
-            foreach (TSource item in source) 
-            {
-                checked { sum += selector(item); } 
-            }
-
-            return sum;
+            return Sum(source.Select(selector));
         }
 
         /// <summary>
@@ -1270,19 +1178,7 @@ namespace System.Linq
         /// <exception cref="System.OverflowException">The sum is larger than System.Int64.MaxValue.</exception>
         public static long? Sum<TSource>(this IEnumerable<TSource> source, Func<TSource, long?> selector)
         {
-            if (source == null) { throw Exceptions.ArgumentNull(Parameter.Source); }
-            if (selector == null) { throw Exceptions.ArgumentNull(Parameter.Selector); }
-
-            long sum = 0;
-
-            foreach (TSource item in source)
-            {
-                long? selectedNullableValue = selector(item);
-
-                if (selectedNullableValue.HasValue) { checked { sum += selectedNullableValue.Value; } }
-            }
-
-            return sum;
+            return Sum(source.Select(selector));
         }
 
         /// <summary>
@@ -1296,17 +1192,7 @@ namespace System.Linq
         /// <exception cref="System.OverflowException">The sum is larger than System.Int64.MaxValue.</exception>
         public static long Sum<TSource>(this IEnumerable<TSource> source, Func<TSource, long> selector)
         {
-            if (source == null) { throw Exceptions.ArgumentNull(Parameter.Source); }
-            if (selector == null) { throw Exceptions.ArgumentNull(Parameter.Selector); }
-
-            long sum = 0;
-
-            foreach (TSource item in source) 
-            { 
-                checked { sum += selector(item); } 
-            }
-
-            return sum;
+            return Sum(source.Select(selector));
         }
 
         #endregion Sum Overloads
@@ -1361,7 +1247,7 @@ namespace System.Linq
                 while (enumerator.MoveNext())
                 {
                     if (float.IsNaN(enumerator.Current)) { continue; }
-                    if ((double)enumerator.Current > (double)max || float.IsNaN(max)) { max = enumerator.Current; }
+                    if (enumerator.Current > (double)max || float.IsNaN(max)) { max = enumerator.Current; }
                 }
 
                 return max;
@@ -1558,7 +1444,7 @@ namespace System.Linq
                         float? item = enumerator.Current;
                         if (item.HasValue && !float.IsNaN(item.Value))
                         {
-                            if ((double)item.Value > (double)maximum.Value || float.IsNaN(maximum.Value)) { maximum = item; }
+                            if (item.Value > (double)maximum.Value || float.IsNaN(maximum.Value)) { maximum = item; }
                         }
                     }
                 }
@@ -1689,25 +1575,7 @@ namespace System.Linq
         /// <exception cref="System.InvalidOperationException">source contains no elements.</exception>
         public static int Max<TSource>(this IEnumerable<TSource> source, Func<TSource, int> selector)
         {
-            if (source == null) { throw Exceptions.ArgumentNull(Parameter.Source); }
-            if (selector == null) { throw Exceptions.ArgumentNull(Parameter.Selector); }
-
-            using (IEnumerator<TSource> enumerator = source.GetEnumerator())
-            {
-                bool has = enumerator.MoveNext();
-
-                if (!has) { throw Exceptions.NoElements(); }
-
-                int max = selector(enumerator.Current);
-
-                while (enumerator.MoveNext())
-                {
-                    int value = selector(enumerator.Current);
-                    if (value > max) { max = value; }
-                }
-
-                return max;
-            }
+            return Max(source.Select(selector));
         }
 
         /// <summary>
@@ -1721,25 +1589,7 @@ namespace System.Linq
         /// <exception cref="System.InvalidOperationException">source contains no elements.</exception>
         public static long Max<TSource>(this IEnumerable<TSource> source, Func<TSource, long> selector)
         {
-            if (source == null) { throw Exceptions.ArgumentNull(Parameter.Source); }
-            if (selector == null) { throw Exceptions.ArgumentNull(Parameter.Selector); }
-
-            using (IEnumerator<TSource> enumerator = source.GetEnumerator())
-            {
-                bool has = enumerator.MoveNext();
-
-                if (!has) { throw Exceptions.NoElements(); }
-
-                long max = selector(enumerator.Current);
-
-                while (enumerator.MoveNext())
-                {
-                    long value = selector(enumerator.Current);
-                    if (value > max) { max = value; }
-                }
-
-                return max;
-            }
+            return Max(source.Select(selector));
         }
 
         /// <summary>
@@ -1753,26 +1603,7 @@ namespace System.Linq
         /// <exception cref="System.InvalidOperationException">source contains no elements.</exception>
         public static float Max<TSource>(this IEnumerable<TSource> source, Func<TSource, float> selector)
         {
-            if (source == null) { throw Exceptions.ArgumentNull(Parameter.Source); }
-            if (selector == null) { throw Exceptions.ArgumentNull(Parameter.Selector); }
-            
-            using (IEnumerator<TSource> enumerator = source.GetEnumerator())
-            {
-                bool has = enumerator.MoveNext();
-
-                if (!has) { throw Exceptions.NoElements(); }
-
-                float max = selector(enumerator.Current);
-
-                while (enumerator.MoveNext())
-                {
-                    float value = selector(enumerator.Current);
-                    if (float.IsNaN(value)) { continue; }
-                    if ((double)value > (double)max || float.IsNaN(max)) { max = value; }
-                }
-
-                return max;
-            }
+            return Max(source.Select(selector));
         }
 
         /// <summary>
@@ -1786,26 +1617,7 @@ namespace System.Linq
         /// <exception cref="System.InvalidOperationException">source contains no elements.</exception>
         public static double Max<TSource>(this IEnumerable<TSource> source, Func<TSource, double> selector)
         {
-            if (source == null) { throw Exceptions.ArgumentNull(Parameter.Source); }
-            if (selector == null) { throw Exceptions.ArgumentNull(Parameter.Selector); }
-
-            using (IEnumerator<TSource> enumerator = source.GetEnumerator())
-            {
-                bool has = enumerator.MoveNext();
-
-                if (!has) { throw Exceptions.NoElements(); }
-
-                double max = selector(enumerator.Current);
-
-                while (enumerator.MoveNext())
-                {
-                    double value = selector(enumerator.Current);
-                    if (double.IsNaN(value)) { continue; }
-                    if (value > max || double.IsNaN(max)) { max = value; }
-                }
-
-                return max;
-            }
+            return Max(source.Select(selector));
         }
 
         /// <summary>
@@ -1819,25 +1631,7 @@ namespace System.Linq
         /// <exception cref="System.InvalidOperationException">source contains no elements.</exception>
         public static decimal Max<TSource>(this IEnumerable<TSource> source, Func<TSource, decimal> selector)
         {
-            if (source == null) { throw Exceptions.ArgumentNull(Parameter.Source); }
-            if (selector == null) { throw Exceptions.ArgumentNull(Parameter.Selector); }
-
-            using (IEnumerator<TSource> enumerator = source.GetEnumerator())
-            {
-                bool has = enumerator.MoveNext();
-
-                if (!has) { throw Exceptions.NoElements(); }
-
-                decimal max = selector(enumerator.Current);
-
-                while (enumerator.MoveNext())
-                {
-                    decimal value = selector(enumerator.Current);
-                    if (value > max) { max = value; }
-                }
-
-                return max;
-            }
+            return Max(source.Select(selector));
         }
 
         /// <summary>
@@ -1850,33 +1644,7 @@ namespace System.Linq
         /// <exception cref="System.ArgumentNullException">source or selector is null.</exception>
         public static int? Max<TSource>(this IEnumerable<TSource> source, Func<TSource, int?> selector)
         {
-            if (source == null) { throw Exceptions.ArgumentNull(Parameter.Source); }
-            if (selector == null) { throw Exceptions.ArgumentNull(Parameter.Selector); }
-
-            int? maximum = new int?();
-            using (IEnumerator<TSource> enumerator = source.GetEnumerator())
-            {
-                while (enumerator.MoveNext())
-                {
-                    int? item = selector(enumerator.Current);
-                    if (item.HasValue)
-                    {
-                        maximum = item;
-                        break;
-                    }
-                }
-
-                if (maximum.HasValue)
-                {
-                    while (enumerator.MoveNext())
-                    {
-                        int? item = selector(enumerator.Current);
-                        if (item.HasValue && item.Value > maximum.Value) { maximum = item; }
-                    }
-                }
-            }
-
-            return maximum;
+            return Max(source.Select(selector));
         }
 
         /// <summary>
@@ -1889,33 +1657,7 @@ namespace System.Linq
         /// <exception cref="System.ArgumentNullException">source or selector is null.</exception>
         public static long? Max<TSource>(this IEnumerable<TSource> source, Func<TSource, long?> selector)
         {
-            if (source == null) { throw Exceptions.ArgumentNull(Parameter.Source); }
-            if (selector == null) { throw Exceptions.ArgumentNull(Parameter.Selector); }
-
-            long? maximum = new long?();
-            using (IEnumerator<TSource> enumerator = source.GetEnumerator())
-            {
-                while (enumerator.MoveNext())
-                {
-                    long? item = selector(enumerator.Current);
-                    if (item.HasValue)
-                    {
-                        maximum = item;
-                        break;
-                    }
-                }
-
-                if (maximum.HasValue)
-                {
-                    while (enumerator.MoveNext())
-                    {
-                        long? item = selector(enumerator.Current);
-                        if (item.HasValue && item.Value > maximum.Value) { maximum = item; }
-                    }
-                }
-            }
-
-            return maximum;
+            return Max(source.Select(selector));
         }
 
         /// <summary>
@@ -1928,36 +1670,7 @@ namespace System.Linq
         /// <exception cref="System.ArgumentNullException">source or selector is null.</exception>
         public static float? Max<TSource>(this IEnumerable<TSource> source, Func<TSource, float?> selector)
         {
-            if (source == null) { throw Exceptions.ArgumentNull(Parameter.Source); }
-            if (selector == null) { throw Exceptions.ArgumentNull(Parameter.Selector); }
-
-            float? maximum = new float?();
-            using (IEnumerator<TSource> enumerator = source.GetEnumerator())
-            {
-                while (enumerator.MoveNext())
-                {
-                    float? item = selector(enumerator.Current);
-                    if (item.HasValue)
-                    {
-                        maximum = item;
-                        break;
-                    }
-                }
-
-                if (maximum.HasValue)
-                {
-                    while (enumerator.MoveNext())
-                    {
-                        float? item = selector(enumerator.Current);
-                        if (item.HasValue && !float.IsNaN(item.Value))
-                        {
-                            if ((double)item.Value > (double)maximum.Value || float.IsNaN(maximum.Value)) { maximum = item; }
-                        }
-                    }
-                }
-            }
-
-            return maximum;
+            return Max(source.Select(selector));
         }
 
         /// <summary>
@@ -1970,36 +1683,7 @@ namespace System.Linq
         /// <exception cref="System.ArgumentNullException">source or selector is null.</exception>
         public static double? Max<TSource>(this IEnumerable<TSource> source, Func<TSource, double?> selector)
         {
-            if (source == null) { throw Exceptions.ArgumentNull(Parameter.Source); }
-            if (selector == null) { throw Exceptions.ArgumentNull(Parameter.Selector); }
-
-            double? maximum = new double?();
-            using (IEnumerator<TSource> enumerator = source.GetEnumerator())
-            {
-                while (enumerator.MoveNext())
-                {
-                    double? item = selector(enumerator.Current);
-                    if (item.HasValue)
-                    {
-                        maximum = item;
-                        break;
-                    }
-                }
-
-                if (maximum.HasValue)
-                {
-                    while (enumerator.MoveNext())
-                    {
-                        double? item = selector(enumerator.Current);
-                        if (item.HasValue && !double.IsNaN(item.Value))
-                        {
-                            if (item.Value > maximum.Value || double.IsNaN(maximum.Value)) { maximum = item; }
-                        }
-                    }
-                }
-            }
-
-            return maximum;
+            return Max(source.Select(selector));
         }
 
         /// <summary>
@@ -2012,33 +1696,7 @@ namespace System.Linq
         /// <exception cref="System.ArgumentNullException">source or selector is null.</exception>
         public static decimal? Max<TSource>(this IEnumerable<TSource> source, Func<TSource, decimal?> selector)
         {
-            if (source == null) { throw Exceptions.ArgumentNull(Parameter.Source); }
-            if (selector == null) { throw Exceptions.ArgumentNull(Parameter.Selector); }
-
-            decimal? maximum = new decimal?();
-            using (IEnumerator<TSource> enumerator = source.GetEnumerator())
-            {
-                while (enumerator.MoveNext())
-                {
-                    decimal? item = selector(enumerator.Current);
-                    if (item.HasValue)
-                    {
-                        maximum = item;
-                        break;
-                    }
-                }
-
-                if (maximum.HasValue)
-                {
-                    while (enumerator.MoveNext())
-                    {
-                        decimal? item = selector(enumerator.Current);
-                        if (item.HasValue && item.Value > maximum.Value) { maximum = item; }
-                    }
-                }
-            }
-
-            return maximum;
+            return Max(source.Select(selector));
         }
 
         /// <summary>
@@ -2052,42 +1710,7 @@ namespace System.Linq
         /// <exception cref="System.ArgumentNullException">source or selector is null.</exception>
         public static TResult Max<TSource, TResult>(this IEnumerable<TSource> source, Func<TSource, TResult> selector)
         {
-            if (source == null) { throw Exceptions.ArgumentNull(Parameter.Source); }
-            if (selector == null) { throw Exceptions.ArgumentNull(Parameter.Selector); }
-
-            Comparer<TResult> comparer = Comparer<TResult>.Default;
-            TResult max = default(TResult);
-
-            if (max == null)
-            {
-                foreach (TSource item in source)
-                {
-                    TResult selectedItem = selector(item);
-
-                    if (selectedItem == null) { continue; }
-                    if (max == null || comparer.Compare(selectedItem, max) > 0) { max = selectedItem; }
-                }
-            }
-            else
-            {
-                using (IEnumerator<TSource> enumerator = source.GetEnumerator())
-                {
-                    bool has = enumerator.MoveNext();
-
-                    if (!has) { throw Exceptions.NoElements(); }
-
-                    max = selector(enumerator.Current);
-
-                    while (enumerator.MoveNext())
-                    {
-                        TResult selectedItem = selector(enumerator.Current);
-
-                        if (comparer.Compare(selectedItem, max) > 0) { max = selectedItem; }
-                    }
-                }
-            }
-
-            return max;
+            return Max(source.Select(selector));
         }
 
         #endregion Max Overloads
@@ -2147,7 +1770,8 @@ namespace System.Linq
                         minimum = enumerator.Current;
                         break;
                     }
-                    else if ((double)enumerator.Current < (double)minimum) { minimum = enumerator.Current; }
+                    
+                    if (enumerator.Current < (double)minimum) { minimum = enumerator.Current; }
                 }
 
                 return minimum;
@@ -2350,7 +1974,7 @@ namespace System.Linq
                         if (item.HasValue)
                         {
                             if (float.IsNaN(item.Value)) { return item; }
-                            if ((double)item.Value < (double)minimum.Value) { minimum = item; }
+                            if (item.Value < (double)minimum.Value) { minimum = item; }
                         }
                     }
                 }
@@ -2482,25 +2106,7 @@ namespace System.Linq
         /// <exception cref="System.InvalidOperationException">source contains no elements.</exception>
         public static int Min<TSource>(this IEnumerable<TSource> source, Func<TSource, int> selector)
         {
-            if (source == null) { throw Exceptions.ArgumentNull(Parameter.Source); }
-            if (selector == null) { throw Exceptions.ArgumentNull(Parameter.Selector); }
-
-            using (IEnumerator<TSource> enumerator = source.GetEnumerator())
-            {
-                bool has = enumerator.MoveNext();
-
-                if (!has) { throw Exceptions.NoElements(); }
-
-                int min = selector(enumerator.Current);
-
-                while (enumerator.MoveNext())
-                {
-                    int value = selector(enumerator.Current);
-                    if (value < min) { min = value; }
-                }
-
-                return min;
-            }
+            return Min(source.Select(selector));
         }
 
         /// <summary>
@@ -2514,25 +2120,7 @@ namespace System.Linq
         /// <exception cref="System.InvalidOperationException">source contains no elements.</exception>
         public static long Min<TSource>(this IEnumerable<TSource> source, Func<TSource, long> selector)
         {
-            if (source == null) { throw Exceptions.ArgumentNull(Parameter.Source); }
-            if (selector == null) { throw Exceptions.ArgumentNull(Parameter.Selector); }
-
-            using (IEnumerator<TSource> enumerator = source.GetEnumerator())
-            {
-                bool has = enumerator.MoveNext();
-
-                if (!has) { throw Exceptions.NoElements(); }
-
-                long min = selector(enumerator.Current);
-
-                while (enumerator.MoveNext())
-                {
-                    long value = selector(enumerator.Current);
-                    if (value < min) { min = value; }
-                }
-
-                return min;
-            }
+            return Min(source.Select(selector));
         }
 
         /// <summary>
@@ -2546,32 +2134,7 @@ namespace System.Linq
         /// <exception cref="System.InvalidOperationException">source contains no elements.</exception>
         public static float Min<TSource>(this IEnumerable<TSource> source, Func<TSource, float> selector)
         {
-            if (source == null) { throw Exceptions.ArgumentNull(Parameter.Source); }
-            if (selector == null) { throw Exceptions.ArgumentNull(Parameter.Selector); }
-
-            using (IEnumerator<TSource> enumerator = source.GetEnumerator())
-            {
-                bool has = enumerator.MoveNext();
-
-                if (!has) { throw Exceptions.NoElements(); }
-
-                float minimum = selector(enumerator.Current);
-                if (float.IsNaN(minimum)) { return minimum; }
-
-                while (enumerator.MoveNext())
-                {
-                    float value = selector(enumerator.Current);
-                    
-                    if (float.IsNaN(value)) 
-                    {
-                        minimum = value;
-                        break;
-                    }
-                    else if ((double)value < (double)minimum) { minimum = value; }
-                }
-
-                return minimum;
-            }
+            return Min(source.Select(selector));
         }
 
         /// <summary>
@@ -2585,32 +2148,7 @@ namespace System.Linq
         /// <exception cref="System.InvalidOperationException">source contains no elements.</exception>
         public static double Min<TSource>(this IEnumerable<TSource> source, Func<TSource, double> selector)
         {
-            if (source == null) { throw Exceptions.ArgumentNull(Parameter.Source); }
-            if (selector == null) { throw Exceptions.ArgumentNull(Parameter.Selector); }
-
-            using (IEnumerator<TSource> enumerator = source.GetEnumerator())
-            {
-                bool has = enumerator.MoveNext();
-
-                if (!has) { throw Exceptions.NoElements(); }
-
-                double minimum = selector(enumerator.Current);
-                if (double.IsNaN(minimum)) { return minimum; }
-
-                while (enumerator.MoveNext())
-                {
-                    double value = selector(enumerator.Current);
-                    
-                    if (double.IsNaN(value)) 
-                    {
-                        minimum = value;
-                        break;
-                    }
-                    else if (value < minimum) { minimum = value; }
-                }
-
-                return minimum;
-            }
+            return Min(source.Select(selector));
         }
 
         /// <summary>
@@ -2624,25 +2162,7 @@ namespace System.Linq
         /// <exception cref="System.InvalidOperationException">source contains no elements.</exception>
         public static decimal Min<TSource>(this IEnumerable<TSource> source, Func<TSource, decimal> selector)
         {
-            if (source == null) { throw Exceptions.ArgumentNull(Parameter.Source); }
-            if (selector == null) { throw Exceptions.ArgumentNull(Parameter.Selector); }
-
-            using (IEnumerator<TSource> enumerator = source.GetEnumerator())
-            {
-                bool has = enumerator.MoveNext();
-
-                if (!has) { throw Exceptions.NoElements(); }
-
-                decimal min = selector(enumerator.Current);
-
-                while (enumerator.MoveNext())
-                {
-                    decimal value = selector(enumerator.Current);
-                    if (value < min) { min = value; }
-                }
-
-                return min;
-            }
+            return Min(source.Select(selector));
         }
 
         /// <summary>
@@ -2655,33 +2175,7 @@ namespace System.Linq
         /// <exception cref="System.ArgumentNullException">source or selector is null.</exception>
         public static int? Min<TSource>(this IEnumerable<TSource> source, Func<TSource, int?> selector)
         {
-            if (source == null) { throw Exceptions.ArgumentNull(Parameter.Source); }
-            if (selector == null) { throw Exceptions.ArgumentNull(Parameter.Selector); }
-
-            int? minimum = new int?();
-            using (IEnumerator<TSource> enumerator = source.GetEnumerator())
-            {
-                while (enumerator.MoveNext())
-                {
-                    int? item = selector(enumerator.Current);
-                    if (item.HasValue)
-                    {
-                        minimum = item;
-                        break;
-                    }
-                }
-
-                if (minimum.HasValue)
-                {
-                    while (enumerator.MoveNext())
-                    {
-                        int? item = selector(enumerator.Current);
-                        if (item.HasValue && item.Value < minimum.Value) { minimum = item; }
-                    }
-                }
-            }
-
-            return minimum;
+            return Min(source.Select(selector));
         }
 
         /// <summary>
@@ -2694,33 +2188,7 @@ namespace System.Linq
         /// <exception cref="System.ArgumentNullException">source or selector is null.</exception>
         public static long? Min<TSource>(this IEnumerable<TSource> source, Func<TSource, long?> selector)
         {
-            if (source == null) { throw Exceptions.ArgumentNull(Parameter.Source); }
-            if (selector == null) { throw Exceptions.ArgumentNull(Parameter.Selector); }
-
-            long? minimum = new long?();
-            using (IEnumerator<TSource> enumerator = source.GetEnumerator())
-            {
-                while (enumerator.MoveNext())
-                {
-                    long? item = selector(enumerator.Current);
-                    if (item.HasValue)
-                    {
-                        minimum = item;
-                        break;
-                    }
-                }
-
-                if (minimum.HasValue)
-                {
-                    while (enumerator.MoveNext())
-                    {
-                        long? item = selector(enumerator.Current);
-                        if (item.HasValue && item.Value < minimum.Value) { minimum = item; }
-                    }
-                }
-            }
-
-            return minimum;
+            return Min(source.Select(selector));
         }
 
         /// <summary>
@@ -2733,41 +2201,7 @@ namespace System.Linq
         /// <exception cref="System.ArgumentNullException">source or selector is null.</exception>
         public static float? Min<TSource>(this IEnumerable<TSource> source, Func<TSource, float?> selector)
         {
-            if (source == null) { throw Exceptions.ArgumentNull(Parameter.Source); }
-            if (selector == null) { throw Exceptions.ArgumentNull(Parameter.Selector); }
-
-            float? minimum = new float?();
-            using (IEnumerator<TSource> enumerator = source.GetEnumerator())
-            {
-                while (enumerator.MoveNext())
-                {
-                    float? item = selector(enumerator.Current);
-                    if (item.HasValue)
-                    {
-                        minimum = item;
-                        break;
-                    }
-                }
-
-                if (minimum.HasValue)
-                {
-                    while (enumerator.MoveNext())
-                    {
-                        float? item = selector(enumerator.Current);
-                        if (item.HasValue)
-                        {
-                            if (float.IsNaN(item.Value)) 
-                            {
-                                minimum = item;
-                                break;
-                            }
-                            else if ((double)item.Value < (double)minimum.Value) { minimum = item; }
-                        }
-                    }
-                }
-            }
-
-            return minimum;
+            return Min(source.Select(selector));
         }
 
         /// <summary>
@@ -2780,41 +2214,7 @@ namespace System.Linq
         /// <exception cref="System.ArgumentNullException">source or selector is null.</exception>
         public static double? Min<TSource>(this IEnumerable<TSource> source, Func<TSource, double?> selector)
         {
-            if (source == null) { throw Exceptions.ArgumentNull(Parameter.Source); }
-            if (selector == null) { throw Exceptions.ArgumentNull(Parameter.Selector); }
-
-            double? minimum = new double?();
-            using (IEnumerator<TSource> enumerator = source.GetEnumerator())
-            {
-                while (enumerator.MoveNext())
-                {
-                    double? item = selector(enumerator.Current);
-                    if (item.HasValue)
-                    {
-                        minimum = item;
-                        break;
-                    }
-                }
-
-                if (minimum.HasValue)
-                {
-                    while (enumerator.MoveNext())
-                    {
-                        double? item = selector(enumerator.Current);
-                        if (item.HasValue)
-                        {
-                            if (double.IsNaN(item.Value)) 
-                            {
-                                minimum = item;
-                                break;
-                            }
-                            else if (item.Value < minimum.Value) { minimum = item; }
-                        }
-                    }
-                }
-            }
-
-            return minimum;
+            return Min(source.Select(selector));
         }
 
         /// <summary>
@@ -2827,33 +2227,7 @@ namespace System.Linq
         /// <exception cref="System.ArgumentNullException">source or selector is null.</exception>
         public static decimal? Min<TSource>(this IEnumerable<TSource> source, Func<TSource, decimal?> selector)
         {
-            if (source == null) { throw Exceptions.ArgumentNull(Parameter.Source); }
-            if (selector == null) { throw Exceptions.ArgumentNull(Parameter.Selector); }
-
-            decimal? minimum = new decimal?();
-            using (IEnumerator<TSource> enumerator = source.GetEnumerator())
-            {
-                while (enumerator.MoveNext())
-                {
-                    decimal? item = selector(enumerator.Current);
-                    if (item.HasValue)
-                    {
-                        minimum = item;
-                        break;
-                    }
-                }
-
-                if (minimum.HasValue)
-                {
-                    while (enumerator.MoveNext())
-                    {
-                        decimal? item = selector(enumerator.Current);
-                        if (item.HasValue && item.Value < minimum.Value) { minimum = item; }
-                    }
-                }
-            }
-
-            return minimum;
+            return Min(source.Select(selector));
         }
 
         /// <summary>
@@ -2867,42 +2241,7 @@ namespace System.Linq
         /// <exception cref="System.ArgumentNullException">source or selector is null.</exception>
         public static TResult Min<TSource, TResult>(this IEnumerable<TSource> source, Func<TSource, TResult> selector)
         {
-            if (source == null) { throw Exceptions.ArgumentNull(Parameter.Source); }
-            if (selector == null) { throw Exceptions.ArgumentNull(Parameter.Selector); }
-
-            Comparer<TResult> comparer = Comparer<TResult>.Default;
-            TResult min = default(TResult);
-
-            if (min == null)
-            {
-                foreach (TSource item in source)
-                {
-                    TResult selectedItem = selector(item);
-
-                    if (selectedItem == null) { continue; }
-                    if (min == null || comparer.Compare(selectedItem, min) < 0) { min = selectedItem; }
-                }
-            }
-            else
-            {
-                using (IEnumerator<TSource> enumerator = source.GetEnumerator())
-                {
-                    bool has = enumerator.MoveNext();
-
-                    if (!has) { throw Exceptions.NoElements(); }
-
-                    min = selector(enumerator.Current);
-
-                    while (enumerator.MoveNext())
-                    {
-                        TResult selectedItem = selector(enumerator.Current);
-
-                        if (comparer.Compare(selectedItem, min) < 0) { min = selectedItem; }
-                    }
-                }
-            }
-
-            return min;
+            return Min(source.Select(selector));
         }
 
         #endregion Min Overloads
@@ -3231,29 +2570,7 @@ namespace System.Linq
         /// <exception cref="System.OverflowException">The sum of the elements in the sequence is larger than System.Int64.MaxValue.</exception>
         public static double? Average<TSource>(this IEnumerable<TSource> source, Func<TSource, int?> selector)
         {
-            if (source == null) { throw Exceptions.ArgumentNull(Parameter.Source); }
-            if (selector == null) { throw Exceptions.ArgumentNull(Parameter.Selector); }
-
-            long sum = 0L;
-            long count = 0L;
-
-            foreach (TSource item in source)
-            {
-                int? selectedNullable = selector(item);
-
-                if (selectedNullable.HasValue)
-                {
-                    checked
-                    {
-                        sum += selectedNullable.Value;
-                        count++;
-                    }
-                }
-            }
-
-            if (count == 0) { return new double?(); }
-
-            return (double)sum / count;
+            return Average(source.Select(selector));
         }
 
         /// <summary>
@@ -3268,29 +2585,7 @@ namespace System.Linq
         /// <exception cref="System.OverflowException">The sum of the elements in the sequence is larger than System.Int64.MaxValue.</exception>
         public static double Average<TSource>(this IEnumerable<TSource> source, Func<TSource, int> selector)
         {
-            if (source == null) { throw Exceptions.ArgumentNull(Parameter.Source); }
-            if (selector == null) { throw Exceptions.ArgumentNull(Parameter.Selector); }
-
-            long sum = 0L;
-            long count = 0L;
-
-            foreach (TSource item in source)
-            {
-                int selectedValue = selector(item);
-
-                checked
-                {
-                    sum += selectedValue;
-                    count++;
-                }
-            }
-
-            if (count == 0)
-            {
-                throw Exceptions.NoElements();
-            }
-
-            return (double)sum / count;
+            return Average(source.Select(selector));
         }
 
         /// <summary>
@@ -3302,29 +2597,7 @@ namespace System.Linq
         /// <returns>The average of the sequence of values, or null if the source sequence is empty or contains only values that are null.</returns>
         public static double? Average<TSource>(this IEnumerable<TSource> source, Func<TSource, long?> selector)
         {
-            if (source == null) { throw Exceptions.ArgumentNull(Parameter.Source); }
-            if (selector == null) { throw Exceptions.ArgumentNull(Parameter.Selector); }
-
-            long sum = 0L;
-            long count = 0L;
-
-            foreach (TSource item in source)
-            {
-                long? selectedNullable = selector(item);
-
-                if (selectedNullable.HasValue)
-                {
-                    checked
-                    {
-                        sum += selectedNullable.Value;
-                        count++;
-                    }
-                }
-            }
-
-            if (count == 0) { return new long?(); }
-
-            return (double)sum / count;
+            return Average(source.Select(selector));
         }
 
         /// <summary>
@@ -3339,29 +2612,7 @@ namespace System.Linq
         /// <exception cref="System.OverflowException">The sum of the elements in the sequence is larger than System.Int64.MaxValue.</exception>
         public static double Average<TSource>(this IEnumerable<TSource> source, Func<TSource, long> selector)
         {
-            if (source == null) { throw Exceptions.ArgumentNull(Parameter.Source); }
-            if (selector == null) { throw Exceptions.ArgumentNull(Parameter.Selector); }
-
-            long sum = 0L;
-            long count = 0L;
-
-            foreach (TSource item in source)
-            {
-                long selectedValue = selector(item);
-
-                checked
-                {
-                    sum += selectedValue;
-                    count++;
-                }
-            }
-
-            if (count == 0)
-            {
-                throw Exceptions.NoElements(); // ~ Source had no elements, operation is invalid.
-            }
-
-            return (double)sum / count;
+            return Average(source.Select(selector));
         }
 
         /// <summary>
@@ -3374,29 +2625,7 @@ namespace System.Linq
         /// <exception cref="System.ArgumentNullException">source or selector is null.</exception>
         public static float? Average<TSource>(this IEnumerable<TSource> source, Func<TSource, float?> selector)
         {
-            if (source == null) { throw Exceptions.ArgumentNull(Parameter.Source); }
-            if (selector == null) { throw Exceptions.ArgumentNull(Parameter.Selector); }
-
-            double sum = 0D;
-            long count = 0L;
-
-            foreach (TSource item in source)
-            {
-                float? selectedNullable = selector(item);
-
-                if (selectedNullable.HasValue)
-                {
-                    checked
-                    {
-                        sum += selectedNullable.Value;
-                        count++;
-                    }
-                }
-            }
-
-            if (count == 0) { return new float?(); }
-
-            return (float)(sum / count);
+            return Average(source.Select(selector));
         }
 
         /// <summary>
@@ -3410,29 +2639,7 @@ namespace System.Linq
         /// <exception cref="System.InvalidOperationException">source contains no elements.</exception>
         public static float Average<TSource>(this IEnumerable<TSource> source, Func<TSource, float> selector)
         {
-            if (source == null) { throw Exceptions.ArgumentNull(Parameter.Source); }
-            if (selector == null) { throw Exceptions.ArgumentNull(Parameter.Selector); }
-
-            double sum = 0D;
-            long count = 0L;
-
-            foreach (TSource item in source)
-            {
-                float selectedValue = selector(item);
-
-                checked
-                {
-                    sum += selectedValue;
-                    count++;
-                }
-            }
-
-            if (count == 0)
-            {
-                throw Exceptions.NoElements();
-            }
-
-            return (float)(sum / count);
+            return Average(source.Select(selector));
         }
 
         /// <summary>
@@ -3446,29 +2653,7 @@ namespace System.Linq
         /// <exception cref="System.OverflowException">The sum of the elements in the sequence is larger than System.Decimal.MaxValue.</exception>
         public static decimal? Average<TSource>(this IEnumerable<TSource> source, Func<TSource, decimal?> selector)
         {
-            if (source == null) { throw Exceptions.ArgumentNull(Parameter.Source); }
-            if (selector == null) { throw Exceptions.ArgumentNull(Parameter.Selector); }
-
-            decimal sum = 0M;
-            long count = 0L;
-
-            foreach (TSource item in source)
-            {
-                decimal? selectedNullable = selector(item);
-
-                if (selectedNullable.HasValue)
-                {
-                    checked
-                    {
-                        sum += selectedNullable.Value;
-                        count++;
-                    }
-                }
-            }
-
-            if (count == 0) { return new decimal?(); }
-
-            return sum / count;
+            return Average(source.Select(selector));
         }
 
         /// <summary>
@@ -3483,29 +2668,7 @@ namespace System.Linq
         /// <exception cref="System.OverflowException">The sum of the elements in the sequence is larger than System.Decimal.MaxValue.</exception>
         public static decimal Average<TSource>(this IEnumerable<TSource> source, Func<TSource, decimal> selector)
         {
-            if (source == null) { throw Exceptions.ArgumentNull(Parameter.Source); }
-            if (selector == null) { throw Exceptions.ArgumentNull(Parameter.Selector); }
-
-            decimal sum = 0M;
-            long count = 0L;
-
-            foreach (TSource item in source)
-            {
-                decimal selectedValue = selector(item);
-
-                checked
-                {
-                    sum += selectedValue;
-                    count++;
-                }
-            }
-
-            if (count == 0)
-            {
-                throw Exceptions.NoElements();
-            }
-
-            return sum / count;
+            return Average(source.Select(selector));
         }
 
         /// <summary>
@@ -3518,29 +2681,7 @@ namespace System.Linq
         /// <exception cref="System.ArgumentNullException">source or selector is null.</exception>
         public static double? Average<TSource>(this IEnumerable<TSource> source, Func<TSource, double?> selector)
         {
-            if (source == null) { throw Exceptions.ArgumentNull(Parameter.Source); }
-            if (selector == null) { throw Exceptions.ArgumentNull(Parameter.Selector); }
-
-            double sum = 0D;
-            long count = 0L;
-
-            foreach (TSource item in source)
-            {
-                double? selectedNullable = selector(item);
-
-                if (selectedNullable.HasValue)
-                {
-                    checked
-                    {
-                        sum += selectedNullable.Value;
-                        count++;
-                    }
-                }
-            }
-
-            if (count == 0) { return new double?(); }
-
-            return sum / count;
+            return Average(source.Select(selector));
         }
 
         /// <summary>
@@ -3554,29 +2695,7 @@ namespace System.Linq
         /// <exception cref="System.InvalidOperationException">source contains no elements.</exception>
         public static double Average<TSource>(this IEnumerable<TSource> source, Func<TSource, double> selector)
         {
-            if (source == null) { throw Exceptions.ArgumentNull(Parameter.Source); }
-            if (selector == null) { throw Exceptions.ArgumentNull(Parameter.Selector); }
-
-            double sum = 0D;
-            long count = 0L;
-
-            foreach (TSource item in source)
-            {
-                double selectedValue = selector(item);
-
-                checked
-                {
-                    sum += selectedValue;
-                    count++;
-                }
-            }
-
-            if (count == 0)
-            {
-                throw Exceptions.NoElements();
-            }
-
-            return sum / count;
+            return Average(source.Select(selector));
         }
 
         #endregion ENDOF: Average Overloads

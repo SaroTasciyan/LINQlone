@@ -45,7 +45,7 @@ namespace LINQlone.Test
         [Test]
         public void ConcatStreamingExecution()
         {
-            IEnumerable<object> enumerable = LateThrowingData().Concat<object>(LateThrowingData());
+            IEnumerable<object> enumerable = LateThrowingData().Concat(LateThrowingData());
 
             Assert.DoesNotThrow(() => enumerable.MoveNext()); // # LateThrownException was not thrown since sequence was not fully enumerated
         }

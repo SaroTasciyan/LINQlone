@@ -139,13 +139,13 @@ namespace LINQlone.Test
         [Test]
         public void JoinOuterKeySelectorArgumentNull()
         {
-            Assert.Throws<ArgumentNullException>(() => DummyData.Join(DummyData, (Func<object, object>)null, x => x, (x, y) => x)).WithParameter("outerKeySelector");
+            Assert.Throws<ArgumentNullException>(() => DummyData.Join(DummyData, null, x => x, (x, y) => x)).WithParameter("outerKeySelector");
         }
 
         [Test]
         public void JoinInnerKeySelectorArgumentNull()
         {
-            Assert.Throws<ArgumentNullException>(() => DummyData.Join(DummyData, x => x, (Func<object, object>)null, (x, y) => x)).WithParameter("innerKeySelector");
+            Assert.Throws<ArgumentNullException>(() => DummyData.Join(DummyData, x => x, null, (x, y) => x)).WithParameter("innerKeySelector");
         }
 
         [Test]
@@ -272,13 +272,13 @@ namespace LINQlone.Test
         [Test]
         public void JoinWithComparerOuterKeySelectorArgumentNull()
         {
-            Assert.Throws<ArgumentNullException>(() => DummyData.Join(DummyData, (Func<object, object>)null, x => x, (x, y) => x, EqualityComparer<object>.Default)).WithParameter("outerKeySelector");
+            Assert.Throws<ArgumentNullException>(() => DummyData.Join(DummyData, null, x => x, (x, y) => x, EqualityComparer<object>.Default)).WithParameter("outerKeySelector");
         }
 
         [Test]
         public void JoinWithComparerInnerKeySelectorArgumentNull()
         {
-            Assert.Throws<ArgumentNullException>(() => DummyData.Join(DummyData, x => x, (Func<object, object>)null, (x, y) => x, EqualityComparer<object>.Default)).WithParameter("innerKeySelector");
+            Assert.Throws<ArgumentNullException>(() => DummyData.Join(DummyData, x => x, null, (x, y) => x, EqualityComparer<object>.Default)).WithParameter("innerKeySelector");
         }
 
         [Test]

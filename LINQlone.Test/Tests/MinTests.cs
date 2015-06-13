@@ -39,7 +39,7 @@ namespace LINQlone.Test
         [Test]
         public void MinIntNonEmptySource()
         {
-            Assert.That(Data<int>(2, 1, 4, 3).Min(), Is.EqualTo(1));
+            Assert.That(Data(2, 1, 4, 3).Min(), Is.EqualTo(1));
         }
 
         [Test]
@@ -69,13 +69,13 @@ namespace LINQlone.Test
         [Test]
         public void MinFloatWithNan()
         {
-            Assert.That(Data<float>(Single.NaN, 2, 1, 4, 3, Single.NaN).Min(), Is.EqualTo(Single.NaN));
+            Assert.That(Data(Single.NaN, 2, 1, 4, 3, Single.NaN).Min(), Is.EqualTo(Single.NaN));
         }
 
         [Test]
         public void MinFloatWithNanAsSecond()
         {
-            Assert.That(Data<float>(0, Single.NaN, 2, 1, 4, 3, Single.NaN).Min(), Is.EqualTo(Single.NaN));
+            Assert.That(Data(0, Single.NaN, 2, 1, 4, 3, Single.NaN).Min(), Is.EqualTo(Single.NaN));
         }
 
         [Test]
@@ -105,13 +105,13 @@ namespace LINQlone.Test
         [Test]
         public void MinDoubleWithNan()
         {
-            Assert.That(Data<double>(Double.NaN, 2, 1, 4, 3, Double.NaN).Min(), Is.EqualTo(Double.NaN));
+            Assert.That(Data(Double.NaN, 2, 1, 4, 3, Double.NaN).Min(), Is.EqualTo(Double.NaN));
         }
 
         [Test]
         public void MinDoubleWithNanAsSecond()
         {
-            Assert.That(Data<double>(0, Double.NaN, 2, 1, 4, 3, Double.NaN).Min(), Is.EqualTo(Double.NaN));
+            Assert.That(Data(0, Double.NaN, 2, 1, 4, 3, Double.NaN).Min(), Is.EqualTo(Double.NaN));
         }
 
         [Test]
@@ -315,7 +315,7 @@ namespace LINQlone.Test
         [Test]
         public void MinIntWithSelectorNonEmptySource()
         {
-            Assert.That(Data<int>(2, 1, 4, 3).Min(x => x * 2), Is.EqualTo(2));
+            Assert.That(Data(2, 1, 4, 3).Min(x => x * 2), Is.EqualTo(2));
         }
 
         [Test]
@@ -351,13 +351,13 @@ namespace LINQlone.Test
         [Test]
         public void MinFloatWithSelectorWithNan()
         {
-            Assert.That(Data<float>(Single.NaN, 2, 1, 4, 3, Single.NaN).Min(x => x * 2), Is.EqualTo(Single.NaN));
+            Assert.That(Data(Single.NaN, 2, 1, 4, 3, Single.NaN).Min(x => x * 2), Is.EqualTo(Single.NaN));
         }
 
         [Test]
         public void MinFloatWithSelectorWithNanAsSecond()
         {
-            Assert.That(Data<float>(0, Single.NaN, 2, 1, 4, 3, Single.NaN).Min(x => x * 2), Is.EqualTo(Single.NaN));
+            Assert.That(Data(0, Single.NaN, 2, 1, 4, 3, Single.NaN).Min(x => x * 2), Is.EqualTo(Single.NaN));
         }
 
         [Test]
@@ -393,13 +393,13 @@ namespace LINQlone.Test
         [Test]
         public void MinDoubleWithSelectorWithNan()
         {
-            Assert.That(Data<double>(Double.NaN, 2, 1, 4, 3, Double.NaN).Min(x => x * 2), Is.EqualTo(Double.NaN));
+            Assert.That(Data(Double.NaN, 2, 1, 4, 3, Double.NaN).Min(x => x * 2), Is.EqualTo(Double.NaN));
         }
 
         [Test]
         public void MinDoubleWithSelectorWithNanAsSecond()
         {
-            Assert.That(Data<double>(0, Double.NaN, 2, 1, 4, 3, Double.NaN).Min(x => x * 2), Is.EqualTo(Double.NaN));
+            Assert.That(Data(0, Double.NaN, 2, 1, 4, 3, Double.NaN).Min(x => x * 2), Is.EqualTo(Double.NaN));
         }
 
         [Test]
@@ -657,13 +657,13 @@ namespace LINQlone.Test
         [Test]
         public void MinGenericValueNonEmptySource()
         {
-            Assert.That(Data<int>(2, 1, 4, 3).Min<int>(), Is.EqualTo(1));
+            Assert.That(Data(2, 1, 4, 3).Min<int>(), Is.EqualTo(1));
         }
 
         [Test]
         public void MinGenericReferenceNonEmptySource()
         {
-            Assert.That(Data<string>(null, "b", "a", "d", "c", null).Min(), Is.EqualTo("a"));
+            Assert.That(Data(null, "b", "a", "d", "c", null).Min(), Is.EqualTo("a"));
         }
 
         [Test]
@@ -693,19 +693,19 @@ namespace LINQlone.Test
         [Test]
         public void MinGenericWithSelectorValueNonEmptySource()
         {
-            Assert.That(Data<int>(2, 1, 4, 3).Min<int, int>(x => x * 2), Is.EqualTo(2));
+            Assert.That(Data(2, 1, 4, 3).Min<int, int>(x => x * 2), Is.EqualTo(2));
         }
 
         [Test]
         public void MinGenericWithSelectorReferenceNonEmptySource()
         {
-            Assert.That(Data<string>("b", "a", "d", "c").Min(x => String.Format("{0}?", x)), Is.EqualTo("a?"));
+            Assert.That(Data("b", "a", "d", "c").Min(x => String.Format("{0}?", x)), Is.EqualTo("a?"));
         }
 
         [Test]
         public void MinGenericWithSelectorReferenceNonEmptyWithNullSource()
         {
-            Assert.That(Data<string>(null, "b", "a", "d", "c", null).Min(x => x), Is.EqualTo("a"));
+            Assert.That(Data(null, "b", "a", "d", "c", null).Min(x => x), Is.EqualTo("a"));
         }
 
         [Test]

@@ -36,12 +36,6 @@ namespace LINQlone.Test.DataObjects
 
         #endregion ENDOF: Fields
 
-        #region Constructors
-
-        protected Data() { }
-
-        #endregion ENDOF: Constructors
-
         #region Properties
 
         public bool IsEnumerated
@@ -89,15 +83,6 @@ namespace LINQlone.Test.DataObjects
 
             #endregion ENDOF: Fields
 
-            #region Properties
-
-            public int EnumerationCount
-            {
-                get { return mEnumerationCount; }
-            }
-
-            #endregion ENDOF: Properties
-
             #region Constructors
 
             internal DataEnumerator(IEnumerable<T> source, OnDisposed onDisposed, OnEnumerationEnded onEnumerationEnded)
@@ -134,10 +119,7 @@ namespace LINQlone.Test.DataObjects
                 {
                     tempEnumerator.Dispose();
 
-                    if (mOnEnumerationEnded != null)
-                    {
-                        mOnEnumerationEnded = null;
-                    }
+                    mOnEnumerationEnded = null;
 
                     if (mOnDisposed != null) 
                     { 

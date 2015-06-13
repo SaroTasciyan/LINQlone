@@ -30,7 +30,8 @@ namespace LINQlone.Test.DataObjects
         protected override bool EqualsImplementation(string x, string y) 
         {
             if (x == null || y == null) { throw new NullReferenceException(); }
-            else { return (x == y); }
+            
+            return (x == y);
         } 
 
         protected override int GetHashCodeImplementation(string obj)

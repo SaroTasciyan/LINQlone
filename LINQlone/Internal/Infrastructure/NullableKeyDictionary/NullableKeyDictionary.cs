@@ -97,15 +97,10 @@ namespace LINQlone.Infrastructure
 
             private static NullableKey<T> Null
             {
-                get
-                {
-                    if (mNull == null) { mNull = new NullableKey<T>(default(T)); }
-
-                    return mNull;
-                }
+                get { return mNull ?? (mNull = new NullableKey<T>(default(T))); }
             }
 
-            internal T Value
+            private T Value
             {
                 get { return mValue; }
             }
